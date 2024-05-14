@@ -144,7 +144,10 @@ export default function Home() {
 
 const inter = Inter({ subsets: ["latin"] });
 
-const Block = styled.div`
+interface BlockProps {
+  block_bg_img: string;
+};
+const Block = styled.div<BlockProps>`
     width: 100%;
     height: 300px;
     background-repeat: repeat;
@@ -158,7 +161,10 @@ const Block = styled.div`
     background-image: url(${props => props.block_bg_img});
   `;
 
-const GasUsed = styled.div`
+interface GasUsedProps {
+  gas_used: number;
+};
+const GasUsed = styled.div<GasUsedProps>`
     width: 100%;
     transition-property: height;
     transition-duration: 2s;
@@ -196,7 +202,10 @@ const BaseFeeContainer = styled.div`
     height: 300px;
   `;
 
-const BaseFees = styled.div`
+interface BaseFeesProps {
+  base_fee_height: number;
+};
+const BaseFees = styled.div<BaseFeesProps>`
     width: 100%;
     height: ${props => props.base_fee_height}%;
     background-color: #4E5F73;
@@ -208,7 +217,10 @@ const BaseFees = styled.div`
     color: #eee;
   `;
 
-const Tips = styled.div`
+interface TipsProps {
+  tips_height: number;
+};
+const Tips = styled.div<TipsProps>`
     width: 100%;
     height: ${props => props.tips_height}px;
     margin: 4px;
