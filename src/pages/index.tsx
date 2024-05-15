@@ -1,42 +1,25 @@
 import Head from "next/head";
 import { useState, useEffect } from "react";
-// import Image from "next/image";
+import Image from "next/image";
+import Link from "next/link";
+import block_flow from "../../public/block_flow.png";
+import eth_logo from "../../public/eth_logo.png";
 import { Inter } from "next/font/google";
 import styles from "@/styles/Home.module.css";
 import styled from "@emotion/styled";
+import SvgComponent from "./gj.jsx";
+import blockData from "../../public/block-19874196-19874237.json";
 
 export default function Home() {
+
   const block_bg_img = `"data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 500 500' fill-opacity='.4' style='enable-background:new 0 0 500 500'%3E%3Cstyle%3E .st2{fill:rgb(109, 104, 104)} %3C/style%3E%3Cg style='display:none'%3E%3Cpath style='display:inline;fill:%23414042' d='M-8.3-5.7h520.7V511H-8.3z' id='Layer_2'/%3E%3C/g%3E%3Cg id='Layer_1'%3E%3Cpath transform='rotate(-45.001 0 .055)' class='st2' d='M-453.7-3.7h907.5v7.5h-907.5z'/%3E%3Cpath transform='rotate(-45.001 31.25 31.306)' class='st2' d='M-422.5 27.6H485v7.5h-907.5z'/%3E%3Cpath transform='rotate(-45.001 62.5 62.556)' class='st2' d='M-391.2 58.8h907.5v7.5h-907.5z'/%3E%3Cpath transform='rotate(-45.001 93.75 93.807)' class='st2' d='M-360 90.1h907.5v7.5H-360z'/%3E%3Cpath transform='rotate(-45.001 125 125.057)' class='st2' d='M-328.7 121.3h907.5v7.5h-907.5z'/%3E%3Cpath transform='rotate(-45.001 156.249 156.308)' class='st2' d='M-297.5 152.6H610v7.5h-907.5z'/%3E%3Cpath transform='rotate(-45.001 187.499 187.558)' class='st2' d='M-266.2 183.8h907.5v7.5h-907.5z'/%3E%3Cpath transform='rotate(-45.001 218.749 218.809)' class='st2' d='M-235 215.1h907.5v7.5H-235z'/%3E%3Cpath transform='rotate(-45.001 249.998 250.06)' class='st2' d='M-203.7 246.3h907.5v7.5h-907.5z'/%3E%3Cpath transform='rotate(-45.001 281.248 281.31)' class='st2' d='M-172.5 277.6H735v7.5h-907.5z'/%3E%3Cpath transform='rotate(-45.001 312.498 312.56)' class='st2' d='M-141.2 308.8h907.5v7.5h-907.5z'/%3E%3Cpath transform='rotate(-45.001 343.748 343.81)' class='st2' d='M-110 340.1h907.5v7.5H-110z'/%3E%3Cpath transform='rotate(-45.001 374.997 375.061)' class='st2' d='M-78.7 371.3h907.5v7.5H-78.7z'/%3E%3Cpath transform='rotate(-45.001 406.247 406.312)' class='st2' d='M-47.5 402.6H860v7.5H-47.5z'/%3E%3Cpath transform='rotate(-45.001 437.497 437.562)' class='st2' d='M-16.2 433.8h907.5v7.5H-16.2z'/%3E%3Cpath transform='rotate(-45.001 468.747 468.813)' class='st2' d='M15 465.1h907.5v7.5H15z'/%3E%3Cpath transform='rotate(-45.001 499.997 500.064)' class='st2' d='M46.3 496.3h907.5v7.5H46.3z'/%3E%3C/g%3E%3C/svg%3E"
   `;
-  const base_fees_value = '0.1432 ETH';
-  const tips_value = '0.0118 ETH';
+
   const gas = [
     { gasUsed: 9.87, targetPercentage: -80 },
     { gasUsed: 83.22, targetPercentage: 66 },
-    { gasUsed: 37.04, targetPercentage: -26 },
-    { gasUsed: 50.85, targetPercentage: 2 },
-    { gasUsed: 57.92, targetPercentage: 16 },
-    { gasUsed: 93.51, targetPercentage: 87 },
-    { gasUsed: 4.33, targetPercentage: -91 },
-    { gasUsed: 60.65, targetPercentage: 21 },
-    { gasUsed: 36.47, targetPercentage: -27 },
-    { gasUsed: 51.26, targetPercentage: 3 },
-    { gasUsed: 68.69, targetPercentage: 37 },
-    { gasUsed: 4.72, targetPercentage: -91 },
-    { gasUsed: 99.31, targetPercentage: 99 },
-    { gasUsed: 5.42, targetPercentage: -89 },
-    { gasUsed: 100.00, targetPercentage: 100 },
-    { gasUsed: 52.63, targetPercentage: 5 },
-    { gasUsed: 91.06, targetPercentage: 82 },
-    { gasUsed: 38.03, targetPercentage: -24 },
-    { gasUsed: 44.54, targetPercentage: -11 },
-    { gasUsed: 65.16, targetPercentage: 30 },
-    { gasUsed: 41.25, targetPercentage: -17 },
-    { gasUsed: 53.08, targetPercentage: 6 },
-    { gasUsed: 36.74, targetPercentage: -27 },
-    { gasUsed: 42.34, targetPercentage: -15 },
-    { gasUsed: 56.99, targetPercentage: 14 }
   ];
+  const tBaseFee = [1, 2, 3, 4, 5, 20, 34, 88, 12, 55, 98, 8, 66, 42, 6, 7, 8, 9, 11, 12];
   const tipReward = [
     '7760000',
     '340000',
@@ -91,24 +74,26 @@ export default function Home() {
     3.52,
     3.46,
   ]
-  const [gas_used, set_gas_used] = useState(gas[0].gasUsed);
-  const [gas_target, set_gas_target] = useState(gas[0].targetPercentage);
+  const [gas_used_percentage, set_gas_used_percentage] = useState(blockData[0].gasUsedPercentage);
+  const [gas_target, set_gas_target] = useState(blockData[0].percentOfGasTarget);
   const [tips_height, set_tips_height] = useState(20);
-  const [base_fee_height, set_base_fee_height] = useState(44);
+  const [base_fee_height, set_base_fee_height] = useState<number>(tBaseFee[0]);
+  const [block_num, set_block_num] = useState<number>(blockData[0].block);
+  const [block_speed, set_block_speed] = useState(3000);
+  const base_fees_value = '0.1432 ETH';
+  const tips_value = '0.0118 ETH';
 
-  let i: number = 0;
   useEffect(() => {
-    const intervalId = setInterval(() => {  //assign interval to a variable to clear it.
-      i++;
-      if (i > gas.length) {
-        i = 1;
-      }
-      set_gas_used(gas[i].gasUsed)
-      set_gas_target(gas[i].targetPercentage)
-    }, 6000)
+    const intervalId = setInterval(() => {
+      set_block_num(block_num + 1);
+      if (block_num >= blockData.length) set_block_num(blockData[0].block);
+      set_gas_used_percentage(gas[block_num]?.gasUsed);
+      set_gas_target(gas[block_num]?.targetPercentage);
+      set_base_fee_height(tBaseFee[block_num]);
+    }, block_speed)
 
-    return () => clearInterval(intervalId); //This is important
-  }, [i]);
+    return () => clearInterval(intervalId);
+  }, [block_num, block_speed]);
 
   return (
     <>
@@ -119,12 +104,55 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <main className={`${styles.main} ${inter.className}`}>
-        <h2>Visualizing EIP-1559</h2>
+        <h2>Visualizing <Link href="https://eips.ethereum.org/EIPS/eip-1559">EIP-1559</Link></h2>
+        <h4>Ethereum's</h4>
+        <h5>Gas Fee Mechanism</h5>
+
+        <Logo>
+          <Image alt='Ethereum Logo' src={eth_logo} />
+        </Logo>
+
+        <p>
+          Ethereum’s EIP-1559 is a fee pricing mechanism to help smooth out spikes in gas prices and targets a general equilibrium of 15 million gwei per block.  It introduced a base fee that get's burned this helps with sybil and spam attacks with an additional benefit of helping reduce ETH issuance and at times even making Eth <Link href="https://ultrasound.money/">deflatioinary</Link>.
+        </p>
+        <p>
+          The base fee is adjusted up or down every block so that the 'average' gas usage per-block remains at a level close to the current gas limit and introduced a cap on transactional gas units a block may have in exchange for a variable byte block size.  As Vitalik points out.
+        </p>
+
+        <aside>
+          Essentially, instead of all of the short-term volatility in demand for transaction space within a block translating into volatility in transaction fees, some of the volatility instead translates into volatility in block size.
+          <Link href="https://notes.ethereum.org/@vbuterin/eip-1559-faq">- V. Buterin</Link>
+        </aside>
+
+        <p>
+          Viewing Etherscan charts for <Link href="https://etherscan.io/chart/gaslimit">network utilization</Link> and for <Link href="https://etherscan.io/chart/networkutilization">average gas limit used</Link> we can observe some positive results towards EIP-1559's goals and viewing information on the <Link href="https://etherscan.io/blocks">latest blocks</Link> we can see how some of these key metrics change on a per block basis. Let's take this spreadsheet style format and visualize some of key variables in a way to better see how EIP-1559 works that feels more intuitive.
+        </p>
+
+        <h3>User Transactions</h3>
+        <p>
+          When a user submits a transaction on Ethereum they need to pay enough Eth to cover the computation/storage as well as a base fee and priority fee (tip) all expressed in gas units. These transactions are picked up by validator nodes and put in the mempool for inclusion into a block by a proposing validator.
+        </p>
+
+        <h3>Proposer / Block Builder</h3>
+        <p>
+          The proposer picks transactions from the mempool to pack into a block. For each transaction that's included we can separate out the three types of gas units it needs to pay into the base fee units, transactional units and tips. Since all are expressed in gas units, let's view a block in terms of the total transactional gas units in proportion to the 30 million gas limit and also track the total base fees and tips in proportion to each other. We can then get a picture of a pending block and the process it takes to land onchain where the newly validated blocks gas usage / target are used to calculate the next blocks gas price.
+        </p>
+
+
+        <FlowImg>
+          <Image alt='block flow' src={block_flow} />
+        </FlowImg>
+
+        <p>
+          The following animation shows how these three variables play out over time to target a general equalibrium. The data is taken from a CSV file for the time period of _ to _ on _ 2024.
+        </p>
+
+        <h3>Block # {block_num}</h3>
+
         <div id='container'>
-          <h6>Proposal Block</h6>
           <Block block_bg_img={block_bg_img}>
-            <GasUsed gas_used={gas_used}>
-              <GasUsedValue>{gas_used}% full | {gas_target}% {gas_target.toString()[0] === '-' ? 'below' : 'above'} target</GasUsedValue>
+            <GasUsed gas_used_percentage={gas_used_percentage}>
+              <GasUsedValue>{gas_used_percentage} full | {gas_target} {gas_target?.toString()[0] === '-' ? 'below' : 'above'} target</GasUsedValue>
             </GasUsed>
           </Block>
           <GeneralEqualibrium />
@@ -137,6 +165,24 @@ export default function Home() {
             </BaseFees>
           </BaseFeeContainer>
         </div>
+
+        <p>
+          I hope to further improve upon this data visual and provide a more live view of current blocks and posible expand out to include <Link href="https://vitalik.eth.limo/general/2024/05/09/multidim.html?">Multidimensional gas pricing</Link> so please reach out if you have any comments or questions.
+        </p>
+
+        <footer>
+          <Link href="https://github.com/Greg-Johns/eip1559">
+            Source Code
+          </Link>
+          <Link href="https://warpcast.com/gajit">
+            Contact
+          </Link>
+          <Logo>
+            <Link href="https://greg-johns.vercel.app/">
+              <SvgComponent />
+            </Link>
+          </Logo>
+        </footer>
       </main >
     </>
   );
@@ -161,14 +207,14 @@ const Block = styled.div<BlockProps>`
     background-image: url(${props => props.block_bg_img});
   `;
 
-interface GasUsedProps {
-  gas_used: number;
-};
-const GasUsed = styled.div<GasUsedProps>`
+interface GasUsedPRops {
+  gas_used_percentage: string;
+}
+const GasUsed = styled.div<GasUsedPRops>`
     width: 100%;
     transition-property: height;
     transition-duration: 2s;
-    height: ${props => props.gas_used}%;
+    height: ${props => props.gas_used_percentage};
     background-color: #4E4560;
     background-color: rgb(124, 108, 150);
     border: 1px dashed #D6C7F4;
@@ -199,15 +245,18 @@ const GeneralEqualibrium = styled.p`
 `;
 
 const BaseFeeContainer = styled.div`
+    width: 300px;
     height: 300px;
   `;
 
-interface BaseFeesProps {
-  base_fee_height: number;
-};
-const BaseFees = styled.div<BaseFeesProps>`
+interface BaseFeeProps {
+  base_fee_height: string;
+}
+const BaseFees = styled.div<BaseFeeProps>`
     width: 100%;
-    height: ${props => props.base_fee_height}%;
+    transition-property: height;
+    transition-duration: 2s;
+    height: ${props => props.base_fee_height};
     background-color: #4E5F73;
     border: 1px dashed #B8FAF6;
     margin-left: 0;
@@ -222,7 +271,7 @@ interface TipsProps {
 };
 const Tips = styled.div<TipsProps>`
     width: 100%;
-    height: ${props => props.tips_height}px;
+    height: ${props => props.tips_height}%;
     margin: 4px;
     background-color: #6C5751;
     border: 1px dashed #F0CDC2;
@@ -232,4 +281,9 @@ const Tips = styled.div<TipsProps>`
     justify-content: center;
     color: #eee;
   `;
-
+const FlowImg = styled.div`
+    margin-top: 40px;
+  `
+const Logo = styled.div`
+    margin: 40px;
+  `
