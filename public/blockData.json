@@ -1,0 +1,47 @@
+[
+ {
+   "block": 19874198,
+   "dateTimeUTC": "2024-05-15 08:31:11",
+   "txn": 187,
+   "feeRecipient": "0x95222290dd7278aa3ddd389cc1e1d165cc4bafe5",
+   "feeRecipientNametag": "beaverbuild",
+   "gasUsed": "12,403,870",
+   "gasUsedPercentage": "41.35%",
+   "percentOfGasTarget": "-17%",
+   "gasLimit": "30,000,000",
+   "baseFee": "9.83 Gwei",
+   "reward": "0.03546 ETH",
+   "burntFeesEth": 0.122032,
+   "burntFeesPercentage": "77.48%"
+ },
+ {
+   "block": 19874199,
+   "dateTimeUTC": "2024-05-15 08:31:23",
+   "txn": 157,
+   "feeRecipient": "0x8a6af67676694aa48acfe4798e23a80feee05bcb",
+   "feeRecipientNametag": "",
+   "gasUsed": "11,418,265",
+   "gasUsedPercentage": "38.06%",
+   "percentOfGasTarget": "-24%",
+   "gasLimit": "30,000,000",
+   "baseFee": "9.62 Gwei",
+   "reward": "0.00699 ETH",
+   "burntFeesEth": 0.109905,
+   "burntFeesPercentage": "94.02%"
+ },
+ {
+   "block": 19874200,
+   "dateTimeUTC": "2024-05-15 08:31:35",
+   "txn": 223,
+   "feeRecipient": "0x95222290dd7278aa3ddd389cc1e1d165cc4bafe5",
+   "feeRecipientNametag": "beaverbuild",
+   "gasUsed": "20,857,828",
+   "gasUsedPercentage": "69.53%",
+   "percentOfGasTarget": "39%",
+   "gasLimit": "30,000,000",
+   "baseFee": "9.33 Gwei",
+   "reward": "0.0812 ETH",
+   "burntFeesEth": 0.194772,
+   "burntFeesPercentage": "70.58%"
+ }
+]

@@ -141,6 +141,12 @@ footer a {
   padding-top: 20px;
 }
 
+button {
+  padding: 2px 8px;
+  margin: 4px;
+  border-radius: 3px;
+}
+
 @media (prefers-color-scheme: dark) {
   html {
     color-scheme: dark;

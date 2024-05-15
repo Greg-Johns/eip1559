@@ -8,92 +8,52 @@ import { Inter } from "next/font/google";
 import styles from "@/styles/Home.module.css";
 import styled from "@emotion/styled";
 import SvgComponent from "./gj.jsx";
-import blockData from "../../public/block-19874196-19874237.json";
+//import blockData from "../../public/block-19874196-19874237.json";
+import blockData from "../../public/blockData.json";
 
 export default function Home() {
 
   const block_bg_img = `"data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 500 500' fill-opacity='.4' style='enable-background:new 0 0 500 500'%3E%3Cstyle%3E .st2{fill:rgb(109, 104, 104)} %3C/style%3E%3Cg style='display:none'%3E%3Cpath style='display:inline;fill:%23414042' d='M-8.3-5.7h520.7V511H-8.3z' id='Layer_2'/%3E%3C/g%3E%3Cg id='Layer_1'%3E%3Cpath transform='rotate(-45.001 0 .055)' class='st2' d='M-453.7-3.7h907.5v7.5h-907.5z'/%3E%3Cpath transform='rotate(-45.001 31.25 31.306)' class='st2' d='M-422.5 27.6H485v7.5h-907.5z'/%3E%3Cpath transform='rotate(-45.001 62.5 62.556)' class='st2' d='M-391.2 58.8h907.5v7.5h-907.5z'/%3E%3Cpath transform='rotate(-45.001 93.75 93.807)' class='st2' d='M-360 90.1h907.5v7.5H-360z'/%3E%3Cpath transform='rotate(-45.001 125 125.057)' class='st2' d='M-328.7 121.3h907.5v7.5h-907.5z'/%3E%3Cpath transform='rotate(-45.001 156.249 156.308)' class='st2' d='M-297.5 152.6H610v7.5h-907.5z'/%3E%3Cpath transform='rotate(-45.001 187.499 187.558)' class='st2' d='M-266.2 183.8h907.5v7.5h-907.5z'/%3E%3Cpath transform='rotate(-45.001 218.749 218.809)' class='st2' d='M-235 215.1h907.5v7.5H-235z'/%3E%3Cpath transform='rotate(-45.001 249.998 250.06)' class='st2' d='M-203.7 246.3h907.5v7.5h-907.5z'/%3E%3Cpath transform='rotate(-45.001 281.248 281.31)' class='st2' d='M-172.5 277.6H735v7.5h-907.5z'/%3E%3Cpath transform='rotate(-45.001 312.498 312.56)' class='st2' d='M-141.2 308.8h907.5v7.5h-907.5z'/%3E%3Cpath transform='rotate(-45.001 343.748 343.81)' class='st2' d='M-110 340.1h907.5v7.5H-110z'/%3E%3Cpath transform='rotate(-45.001 374.997 375.061)' class='st2' d='M-78.7 371.3h907.5v7.5H-78.7z'/%3E%3Cpath transform='rotate(-45.001 406.247 406.312)' class='st2' d='M-47.5 402.6H860v7.5H-47.5z'/%3E%3Cpath transform='rotate(-45.001 437.497 437.562)' class='st2' d='M-16.2 433.8h907.5v7.5H-16.2z'/%3E%3Cpath transform='rotate(-45.001 468.747 468.813)' class='st2' d='M15 465.1h907.5v7.5H15z'/%3E%3Cpath transform='rotate(-45.001 499.997 500.064)' class='st2' d='M46.3 496.3h907.5v7.5H46.3z'/%3E%3C/g%3E%3C/svg%3E"
   `;
 
-  const gas = [
-    { gasUsed: 9.87, targetPercentage: -80 },
-    { gasUsed: 83.22, targetPercentage: 66 },
-  ];
-  const tBaseFee = [1, 2, 3, 4, 5, 20, 34, 88, 12, 55, 98, 8, 66, 42, 6, 7, 8, 9, 11, 12];
-  const tipReward = [
-    '7760000',
-    '340000',
-    '25220000',
-    '40380000',
-    '16990000',
-    '72320000',
-    '250000',
-    '1450000',
-    '116080000',
-    '5140000',
-    '87520000',
-    '2750000',
-    '39130000',
-    '3560000',
-    '11490000',
-    '30880000',
-    '101090000',
-    '16590000',
-    '58780000',
-    '37480000',
-    '50780000',
-    '36790000',
-    '43860000',
-    '22110000',
-    '49540000',
-  ]
-  const baseFee = [
-    3.96,
-    3.66,
-    3.78,
-    3.77,
-    3.7,
-    3.34,
-    3.77,
-    3.67,
-    3.8,
-    3.78,
-    3.62,
-    4.08,
-    3.63,
-    4.09,
-    3.63,
-    3.61,
-    3.27,
-    3.37,
-    3.42,
-    3.29,
-    3.37,
-    3.34,
-    3.46,
-    3.52,
-    3.46,
-  ]
-  const [gas_used_percentage, set_gas_used_percentage] = useState(blockData[0].gasUsedPercentage);
-  const [gas_target, set_gas_target] = useState(blockData[0].percentOfGasTarget);
-  const [tips_height, set_tips_height] = useState(20);
-  const [base_fee_height, set_base_fee_height] = useState<number>(tBaseFee[0]);
+  const [gas_used_percentage, set_gas_used_percentage] = useState<string>(blockData[0].gasUsedPercentage);
+  const [gas_target, set_gas_target] = useState<string>(blockData[0].percentOfGasTarget);
+  const [tips_height, set_tips_height] = useState('10%');
+  const [base_fee_height, set_base_fee_height] = useState<string>("0%");
   const [block_num, set_block_num] = useState<number>(blockData[0].block);
-  const [block_speed, set_block_speed] = useState(3000);
-  const base_fees_value = '0.1432 ETH';
-  const tips_value = '0.0118 ETH';
+  const [block_count, set_block_count] = useState<number>(0);
+  const blockHeight: number = 19874200;
+  const [base_fees_value, set_base_fees_value] = useState<string>(blockData[0].baseFee);
+  const [tips_value, set_tips_value] = useState<string>(blockData[0].reward);
+  const [transactions, set_transactions] = useState<number>(blockData[0].txn);
+  const [block_speed, set_block_speed] = useState<number>(12000);
 
   useEffect(() => {
     const intervalId = setInterval(() => {
-      set_block_num(block_num + 1);
-      if (block_num >= blockData.length) set_block_num(blockData[0].block);
-      set_gas_used_percentage(gas[block_num]?.gasUsed);
-      set_gas_target(gas[block_num]?.targetPercentage);
-      set_base_fee_height(tBaseFee[block_num]);
-    }, block_speed)
+      set_block_count(prev => prev + 1);
+      set_gas_target(_ => blockData[block_count + 1]?.percentOfGasTarget);
+      set_base_fee_height(blockData[block_count + 1]?.gasUsedPercentage);
+      set_base_fees_value(blockData[block_count + 1]?.baseFee);
+      set_tips_value(blockData[block_count + 1]?.reward);
+      set_block_num(prev => prev + 1);
+      set_gas_used_percentage(_ => blockData[block_count + 1]?.gasUsedPercentage);
+      set_transactions(_ => blockData[block_count + 1]?.txn);
+      console.log(block_count, ":", block_num, ":", gas_used_percentage)
+      if (block_num >= blockHeight) {
+        console.log("over", block_num)
+        set_block_count(0);
+        set_gas_target(blockData[0]?.percentOfGasTarget);
+        set_base_fee_height(blockData[0]?.gasUsedPercentage);
+        set_base_fees_value(blockData[0]?.baseFee);
+        set_tips_value(blockData[0]?.reward);
+        set_block_num(19874198)
+        set_gas_used_percentage(blockData[0]?.gasUsedPercentage);
+        set_transactions(blockData[0]?.txn);
+      }
+    }, block_speed);
 
     return () => clearInterval(intervalId);
-  }, [block_num, block_speed]);
+  });
 
   return (
     <>
@@ -109,7 +69,7 @@ export default function Home() {
         <h5>Gas Fee Mechanism</h5>
 
         <Logo>
-          <Image alt='Ethereum Logo' src={eth_logo} />
+          <Image fetchPriority="low" alt="Ethereum Logo" src={eth_logo} />
         </Logo>
 
         <p>
@@ -140,7 +100,7 @@ export default function Home() {
 
 
         <FlowImg>
-          <Image alt='block flow' src={block_flow} />
+          <Image fetchPriority="high" alt='block flow' src={block_flow} />
         </FlowImg>
 
         <p>
@@ -148,11 +108,12 @@ export default function Home() {
         </p>
 
         <h3>Block # {block_num}</h3>
+        <Tcount>Transaction count: {transactions}</Tcount>
 
         <div id='container'>
           <Block block_bg_img={block_bg_img}>
             <GasUsed gas_used_percentage={gas_used_percentage}>
-              <GasUsedValue>{gas_used_percentage} full | {gas_target} {gas_target?.toString()[0] === '-' ? 'below' : 'above'} target</GasUsedValue>
+              <GasUsedValue>{gas_used_percentage} full {gas_target} {gas_target?.[0] === '-' ? 'below' : 'above'} target</GasUsedValue>
             </GasUsed>
           </Block>
           <GeneralEqualibrium />
@@ -166,9 +127,13 @@ export default function Home() {
           </BaseFeeContainer>
         </div>
 
+        <Tcount>Change block time {block_speed / 1000} Seconds</Tcount>
+        <div>
+          <button onClick={() => set_block_speed(12000)}>12 sec</button> <button onClick={() => set_block_speed(6000)}>6 sec</button> <button onClick={() => set_block_speed(4000)}>4 sec</button>
+        </div>
+
         <p>
-          I hope to further improve upon this data visual and provide a more live view of current blocks and posible expand out to include <Link href="https://vitalik.eth.limo/general/2024/05/09/multidim.html?">Multidimensional gas pricing</Link> so please reach out if you have any comments or questions.
-        </p>
+          I hope to improve upon this data visual and provide a more live view of current blocks and posible expand out to include <Link href="https://vitalik.eth.limo/general/2024/05/09/multidim.html?">Multidimensional gas pricing</Link> so please reach out if you have any comments or questions.</p>
 
         <footer>
           <Link href="https://github.com/Greg-Johns/eip1559">
@@ -224,14 +189,17 @@ const GasUsed = styled.div<GasUsedPRops>`
   `;
 const GasUsedValue = styled.p`
     color: #999;
-    margin-top: -18px;
+    margin-top: -20px;
+    font-size: 12px;
   `;
 
 const TipsValue = styled.p`
     color: #F0CDC2;
+    font-size: 12px;
   `;
 const BaseValue = styled.p`
     color: rgb(140, 160, 250);
+    font-size: 12px;
   `;
 
 const GeneralEqualibrium = styled.p`
@@ -267,11 +235,11 @@ const BaseFees = styled.div<BaseFeeProps>`
   `;
 
 interface TipsProps {
-  tips_height: number;
+  tips_height: string;
 };
 const Tips = styled.div<TipsProps>`
     width: 100%;
-    height: ${props => props.tips_height}%;
+    height: 20px;
     margin: 4px;
     background-color: #6C5751;
     border: 1px dashed #F0CDC2;
@@ -286,4 +254,9 @@ const FlowImg = styled.div`
   `
 const Logo = styled.div`
     margin: 40px;
+  `
+const Tcount = styled.div`
+    margin-top: 10px;
+    padding: 0;
+    font-size: 11px;
   `
