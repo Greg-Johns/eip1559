@@ -10,6 +10,7 @@ import styled from "@emotion/styled";
 import SvgComponent from "./gj.jsx";
 //import blockData from "../../public/block-19874196-19874237.json";
 import blockData from "../../public/block-19874196-19874237.json";
+import { Analytics } from '@vercel/analytics/react';
 
 export default function Home() {
 
@@ -19,36 +20,42 @@ export default function Home() {
   const [gas_used_percentage, set_gas_used_percentage] = useState<string>(blockData[0].gasUsedPercentage);
   const [gas_target, set_gas_target] = useState<string>(blockData[0].percentOfGasTarget);
   const [tips_height, set_tips_height] = useState('10%');
+  const [base_fee, set_base_fee] = useState<string>(blockData[0].baseFee);
   const [base_fee_height, set_base_fee_height] = useState<string>("0%");
   const [block_num, set_block_num] = useState<number>(blockData[0].block);
   const [block_count, set_block_count] = useState<number>(0);
   const blockHeight: number = 19874237;
-  const [base_fees_value, set_base_fees_value] = useState<string>(blockData[0].baseFee);
+  const [base_fees_value, set_base_fees_value] = useState<number>(blockData[0].burntFeesEth);
   const [tips_value, set_tips_value] = useState<string>(blockData[0].reward);
   const [transactions, set_transactions] = useState<number>(blockData[0].txn);
   const [block_speed, set_block_speed] = useState<number>(12000);
+  const [recipient, set_recipient] = useState<string>(blockData[0].feeRecipientNametag)
 
   useEffect(() => {
     const intervalId = setInterval(() => {
       set_block_count(prev => prev + 1);
       set_gas_target(_ => blockData[block_count + 1]?.percentOfGasTarget);
-      set_base_fee_height(blockData[block_count + 1]?.gasUsedPercentage);
-      set_base_fees_value(blockData[block_count + 1]?.baseFee);
+      set_base_fee(blockData[block_count + 1]?.baseFee);
+      set_base_fee_height(blockData[block_count + 1]?.burntFeesPercentage);
+      set_base_fees_value(blockData[block_count + 1]?.burntFeesEth);
       set_tips_value(blockData[block_count + 1]?.reward);
       set_block_num(prev => prev + 1);
       set_gas_used_percentage(_ => blockData[block_count + 1]?.gasUsedPercentage);
       set_transactions(_ => blockData[block_count + 1]?.txn);
+      set_recipient(_ => blockData[block_count + 1]?.feeRecipientNametag)
       console.log(block_count, ":", block_num, ":", gas_used_percentage)
       if (block_num >= blockHeight) {
         console.log("over", block_num)
         set_block_count(0);
         set_gas_target(blockData[0]?.percentOfGasTarget);
-        set_base_fee_height(blockData[0]?.gasUsedPercentage);
-        set_base_fees_value(blockData[0]?.baseFee);
+        set_base_fee(blockData[0]?.baseFee);
+        set_base_fee_height(blockData[0]?.burtFeesPercentage);
+        set_base_fees_value(blockData[0]?.burntFeesEth);
         set_tips_value(blockData[0]?.reward);
         set_block_num(19874198)
         set_gas_used_percentage(blockData[0]?.gasUsedPercentage);
         set_transactions(blockData[0]?.txn);
+        set_recipient(_ => blockData[0]?.feeRecipientNametag)
       }
     }, block_speed);
 
@@ -101,14 +108,16 @@ export default function Home() {
 
         <FlowImg>
           <Image fetchPriority="high" alt="block flow" src={block_flow} />
+          {/* <Image fill={true} sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw" fetchPriority="high" alt="block flow" src={block_flow} /> */}
         </FlowImg>
 
         <p>
-          The following animation shows how these three variables play out over time to target a general equalibrium. The data is taken from Etherscan for the time period of _ to _ on _ 2024.
+          The following animation shows how these three variables play out over time to target a general equalibrium. The data is taken from Etherscan on May 15th 2024 for blocks 1987196 to 19874237.
         </p>
 
         <h3>Block # {block_num}</h3>
         <Tcount>Transaction count: {transactions}</Tcount>
+        <Tcount>Base fee for inclusion: {base_fee}</Tcount>
 
         <div id='container'>
           <Block block_bg_img={block_bg_img}>
@@ -118,11 +127,11 @@ export default function Home() {
           </Block>
           <GeneralEqualibrium />
           <Tips tips_height={tips_height}>
-            <TipsValue>{tips_value}</TipsValue>
+            <TipsValue>{tips_value} to {recipient}</TipsValue>
           </Tips>
           <BaseFeeContainer>
             <BaseFees base_fee_height={base_fee_height}>
-              <BaseValue>{base_fees_value}</BaseValue>
+              <BaseValue>{base_fees_value} ETH</BaseValue>
             </BaseFees>
           </BaseFeeContainer>
         </div>
@@ -133,7 +142,7 @@ export default function Home() {
         </div>
 
         <p>
-          I hope to improve upon this data visual and provide a more live view of current blocks and posible expand out to include <Link href="https://vitalik.eth.limo/general/2024/05/09/multidim.html?">Multidimensional gas pricing</Link> so please reach out if you have any comments or questions.</p>
+          I hope to improve this data visual and provide a more live view of current blocks and posible expand out to include <Link href="https://vitalik.eth.limo/general/2024/05/09/multidim.html?">Multidimensional gas pricing</Link> so please reach out if you have any comments or questions.</p>
 
         <footer>
           <Link href="https://github.com/Greg-Johns/eip1559">
@@ -148,6 +157,7 @@ export default function Home() {
             </Link>
           </Logo>
         </footer>
+        <Analytics />
       </main >
     </>
   );
@@ -252,6 +262,7 @@ const Tips = styled.div<TipsProps>`
   `;
 const FlowImg = styled.div`
     margin-top: 40px;
+    text-align: center;
   `
 const Logo = styled.div`
     margin: 40px;
