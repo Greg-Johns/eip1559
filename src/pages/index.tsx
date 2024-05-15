@@ -9,7 +9,7 @@ import styles from "@/styles/Home.module.css";
 import styled from "@emotion/styled";
 import SvgComponent from "./gj.jsx";
 //import blockData from "../../public/block-19874196-19874237.json";
-import blockData from "../../public/blockData.json";
+import blockData from "../../public/block-19874196-19874237.json";
 
 export default function Home() {
 
@@ -22,7 +22,7 @@ export default function Home() {
   const [base_fee_height, set_base_fee_height] = useState<string>("0%");
   const [block_num, set_block_num] = useState<number>(blockData[0].block);
   const [block_count, set_block_count] = useState<number>(0);
-  const blockHeight: number = 19874200;
+  const blockHeight: number = 19874237;
   const [base_fees_value, set_base_fees_value] = useState<string>(blockData[0].baseFee);
   const [tips_value, set_tips_value] = useState<string>(blockData[0].reward);
   const [transactions, set_transactions] = useState<number>(blockData[0].txn);
@@ -65,7 +65,7 @@ export default function Home() {
       </Head>
       <main className={`${styles.main} ${inter.className}`}>
         <h2>Visualizing <Link href="https://eips.ethereum.org/EIPS/eip-1559">EIP-1559</Link></h2>
-        <h4>Ethereum's</h4>
+        <h4>Ethereum&#39;s</h4>
         <h5>Gas Fee Mechanism</h5>
 
         <Logo>
@@ -73,10 +73,10 @@ export default function Home() {
         </Logo>
 
         <p>
-          Ethereum’s EIP-1559 is a fee pricing mechanism to help smooth out spikes in gas prices and targets a general equilibrium of 15 million gwei per block.  It introduced a base fee that get's burned this helps with sybil and spam attacks with an additional benefit of helping reduce ETH issuance and at times even making Eth <Link href="https://ultrasound.money/">deflatioinary</Link>.
+          Ethereum&#39;s EIP-1559 is a fee pricing mechanism to help smooth out spikes in gas prices and targets a general equilibrium of 15 million gwei per block.  It introduced a base fee that get&#39;s burned this helps with sybil and spam attacks with an additional benefit of helping reduce ETH issuance and at times even making Eth <Link href="https://ultrasound.money/">deflatioinary</Link>.
         </p>
         <p>
-          The base fee is adjusted up or down every block so that the 'average' gas usage per-block remains at a level close to the current gas limit and introduced a cap on transactional gas units a block may have in exchange for a variable byte block size.  As Vitalik points out.
+          The base fee is adjusted up or down every block so that the average gas usage per-block remains at a level close to the current gas limit and introduced a cap on transactional gas units a block may have in exchange for a variable byte block size.  As Vitalik points out.
         </p>
 
         <aside>
@@ -85,7 +85,7 @@ export default function Home() {
         </aside>
 
         <p>
-          Viewing Etherscan charts for <Link href="https://etherscan.io/chart/gaslimit">network utilization</Link> and for <Link href="https://etherscan.io/chart/networkutilization">average gas limit used</Link> we can observe some positive results towards EIP-1559's goals and viewing information on the <Link href="https://etherscan.io/blocks">latest blocks</Link> we can see how some of these key metrics change on a per block basis. Let's take this spreadsheet style format and visualize some of key variables in a way to better see how EIP-1559 works that feels more intuitive.
+          Viewing Etherscan charts for <Link href="https://etherscan.io/chart/gaslimit">network utilization</Link> and for <Link href="https://etherscan.io/chart/networkutilization">average gas limit used</Link> we can observe some positive results towards EIP-1559&#39;s goals and viewing information on the <Link href="https://etherscan.io/blocks">latest blocks</Link> we can see how some of these key metrics change on a per block basis. Let&#39;s take this spreadsheet style format and visualize some of key variables in a way to better see how EIP-1559 works that feels more intuitive.
         </p>
 
         <h3>User Transactions</h3>
@@ -95,16 +95,16 @@ export default function Home() {
 
         <h3>Proposer / Block Builder</h3>
         <p>
-          The proposer picks transactions from the mempool to pack into a block. For each transaction that's included we can separate out the three types of gas units it needs to pay into the base fee units, transactional units and tips. Since all are expressed in gas units, let's view a block in terms of the total transactional gas units in proportion to the 30 million gas limit and also track the total base fees and tips in proportion to each other. We can then get a picture of a pending block and the process it takes to land onchain where the newly validated blocks gas usage / target are used to calculate the next blocks gas price.
+          The proposer picks transactions from the mempool to pack into a block. For each transaction that&#39;s included we can separate out the three types of gas units it needs to pay into the base fee units, transactional units and tips. Since all are expressed in gas units, let&#39;s view a block in terms of the total transactional gas units in proportion to the 30 million gas limit and also track the total base fees and tips in proportion to each other. We can then get a picture of a pending block and the process it takes to land onchain where the newly validated blocks gas usage / target are used to calculate the next blocks gas price.
         </p>
 
 
         <FlowImg>
-          <Image fetchPriority="high" alt='block flow' src={block_flow} />
+          <Image fetchPriority="high" alt="block flow" src={block_flow} />
         </FlowImg>
 
         <p>
-          The following animation shows how these three variables play out over time to target a general equalibrium. The data is taken from a CSV file for the time period of _ to _ on _ 2024.
+          The following animation shows how these three variables play out over time to target a general equalibrium. The data is taken from Etherscan for the time period of _ to _ on _ 2024.
         </p>
 
         <h3>Block # {block_num}</h3>
@@ -191,6 +191,7 @@ const GasUsedValue = styled.p`
     color: #999;
     margin-top: -20px;
     font-size: 12px;
+    z-index: 20;
   `;
 
 const TipsValue = styled.p`
