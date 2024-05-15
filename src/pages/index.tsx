@@ -49,7 +49,7 @@ export default function Home() {
         set_block_count(0);
         set_gas_target(blockData[0]?.percentOfGasTarget);
         set_base_fee(blockData[0]?.baseFee);
-        set_base_fee_height(blockData[0]?.burtFeesPercentage);
+        set_base_fee_height(blockData[0]?.burntFeesPercentage);
         set_base_fees_value(blockData[0]?.burntFeesEth);
         set_tips_value(blockData[0]?.reward);
         set_block_num(19874198)
