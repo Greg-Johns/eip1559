@@ -140,11 +140,30 @@ footer a {
   text-align: center;
   padding-top: 20px;
 }
+footer svg {
+  opacity: 0.6;
+}
+footer svg:hover {
+  opacity: 1;
+}
 
 button {
-  padding: 2px 8px;
-  margin: 4px;
+  background-color: #80818c;
+  padding: 6px 10px;
+  margin: 12px 6px;
   border-radius: 3px;
+  border: none;
+}
+button:hover {
+  cursor: pointer;
+  background-color: #32417f;
+}
+
+input {
+  padding: 6px 10px;
+  margin: 12px;
+  border-radius: 3px;
+  border: 1px solid #80818c;
 }
 
 @media (prefers-color-scheme: dark) {
