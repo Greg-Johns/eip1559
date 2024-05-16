@@ -119,17 +119,16 @@ export default function Home() {
 
         <h3>Proposer / Block Builder</h3>
         <p>
-          The proposer picks transactions from the mempool to pack into a block. For each transaction that&#39;s included we can separate out the three types of gas units it needs to pay into the base fee units, transactional units and tips. Since all are expressed in gas units, let&#39;s view a block in terms of the total transactional gas units in proportion to the 30 million gas limit and also track the total base fees and tips in proportion to each other. We can then get a picture of a pending block and the process it takes to land onchain where the newly validated blocks gas usage / target are used to calculate the next blocks gas price.
+          The proposer picks transactions from the mempool to pack into a block. For each transaction that&#39;s included we can separate out the three types of gas units it needs to pay into the base fee units, transactional units and tips. Since all are expressed in gas units, we can view a block in terms of the total transactional gas units in proportion to the 30 million gas limit and also track the total base fees and tips_height as a percentage of the total transaction fees. We can then get a picture of a pending block and the process it takes to land onchain where it's block usage is used to set the next blocks base fee.
         </p>
 
 
         <FlowImg>
           <Image fetchPriority="high" alt="block flow" src={block_flow} />
-          {/* <Image fill={true} sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw" fetchPriority="high" alt="block flow" src={block_flow} /> */}
         </FlowImg>
 
         <p>
-          The following animation shows how these three variables play out over time to target a general equalibrium. The data is taken from Etherscan on May 15th 2024 for blocks 1987196 to 19874237.
+          The following shows a block-by-block animation of these key values over block numbers 1987197 to 19874237 from May 15th 2024 for blocks and taken from converting the csv file downloaded from Etherscan. I still need to derive the tip value as it's not given in the data but will get this working soon.
         </p>
 
         <div id='container'>
@@ -168,7 +167,7 @@ export default function Home() {
         </div> */}
 
         <p>
-          I set the block time set to 4 seconds per slot to speed things up a bit and hope to improve on the data visual by providing a more live view of current blocks.  Beyond that maybe expand out to include <Link href="https://vitalik.eth.limo/general/2024/05/09/multidim.html?">Multidimensional gas pricing</Link> so please reach out if you have any comments or questions.</p>
+          The block time set to 4 seconds per slot (as opposed to 12) to speed things up a bit. I hope to improve on the data visual by providing a more live view of current blocks and beyond that maybe expand out to include <Link href="https://vitalik.eth.limo/general/2024/05/09/multidim.html?">Multidimensional gas pricing</Link> so please reach out if you have any comments or questions.</p>
 
         <footer>
           <Link href="https://github.com/Greg-Johns/eip1559">
