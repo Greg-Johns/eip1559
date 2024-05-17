@@ -9,8 +9,8 @@ import { Inter } from "next/font/google";
 import styles from "@/styles/Home.module.css";
 import styled from "@emotion/styled";
 import SvgComponent from "./gj.jsx";
-// import blockData from "../../public/block-19874196-19874237.json";
-import blockData from "../../public/blockData.json";
+import blockData from "../../public/block-19874196-19874237.json";
+// import blockData from "../../public/blockData.json";
 import { Analytics } from '@vercel/analytics/react';
 
 export default function Home() {
@@ -31,8 +31,8 @@ export default function Home() {
   const [block_speed, set_block_speed] = useState<number>(4000);
   const [recipient, set_recipient] = useState<string>(blockData[0].feeRecipientNametag)
   const [intervalId, setIntervalId] = useState<number>(0);
-  const block_height: number = 19874200;
-  // const block_height: number = 19874237;
+  // const block_height: number = 19874200;
+  const block_height: number = 19874237;
 
   useEffect(() => {
     set_block_num(blockData[block_count + 1]?.block);
@@ -51,7 +51,7 @@ export default function Home() {
       set_base_fee_height(blockData[0]?.burntFeesPercentage);
       set_base_fees_value(blockData[0]?.burntFeesEth);
       set_tips_value(blockData[0]?.reward);
-      set_block_num(19874198)
+      set_block_num(19874197)
       set_gas_used_percentage(blockData[0]?.gasUsedPercentage);
       set_transactions(blockData[0]?.txn);
       set_recipient(_ => blockData[0]?.feeRecipientNametag)
