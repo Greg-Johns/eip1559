@@ -148,7 +148,7 @@ footer svg:hover {
 }
 
 button {
-  background-color: #80818c;
+  background-color: #535674;
   padding: 6px 10px;
   margin: 12px 6px;
   border-radius: 3px;
@@ -157,6 +157,9 @@ button {
 button:hover {
   cursor: pointer;
   background-color: #32417f;
+  -webkit-box-shadow:0px 0px 4px 2px #777;
+  -moz-box-shadow: 0px 0px 4px 2px #777;
+  box-shadow: 0px 0px 4px 2px #777;
 }
 
 input {

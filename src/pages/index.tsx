@@ -9,8 +9,8 @@ import { Inter } from "next/font/google";
 import styles from "@/styles/Home.module.css";
 import styled from "@emotion/styled";
 import SvgComponent from "./gj.jsx";
-import blockData from "../../public/block-19874196-19874237.json";
-// import blockData from "../../public/blockData.json";
+// import blockData from "../../public/block-19874196-19874237.json";
+import blockData from "../../public/blockData.json";
 import { Analytics } from '@vercel/analytics/react';
 
 export default function Home() {
@@ -31,8 +31,8 @@ export default function Home() {
   const [block_speed, set_block_speed] = useState<number>(4000);
   const [recipient, set_recipient] = useState<string>(blockData[0].feeRecipientNametag)
   const [intervalId, setIntervalId] = useState<number>(0);
-  // const block_height: number = 19874200;
-  const block_height: number = 19874237;
+  const block_height: number = 19874200;
+  // const block_height: number = 19874237;
 
   useEffect(() => {
     set_block_num(blockData[block_count + 1]?.block);
@@ -45,6 +45,16 @@ export default function Home() {
     set_transactions(blockData[block_count + 1]?.txn);
     set_recipient(blockData[block_count + 1]?.feeRecipientNametag)
     if (block_num >= block_height) {
+      set_block_count(0);
+      set_gas_target(blockData[0]?.percentOfGasTarget);
+      set_base_fee(blockData[0]?.baseFee);
+      set_base_fee_height(blockData[0]?.burntFeesPercentage);
+      set_base_fees_value(blockData[0]?.burntFeesEth);
+      set_tips_value(blockData[0]?.reward);
+      set_block_num(19874198)
+      set_gas_used_percentage(blockData[0]?.gasUsedPercentage);
+      set_transactions(blockData[0]?.txn);
+      set_recipient(_ => blockData[0]?.feeRecipientNametag)
       reset();
     }
   }, [block_count]);
@@ -52,22 +62,11 @@ export default function Home() {
   const reset = () => {
     clearInterval(intervalId);
     setIntervalId(0);
-    // set_block_count(0);
-    // set_gas_target(blockData[0]?.percentOfGasTarget);
-    // set_base_fee(blockData[0]?.baseFee);
-    // set_base_fee_height(blockData[0]?.burntFeesPercentage);
-    // set_base_fees_value(blockData[0]?.burntFeesEth);
-    // set_tips_value(blockData[0]?.reward);
-    // set_block_num(19874198)
-    // set_gas_used_percentage(blockData[0]?.gasUsedPercentage);
-    // set_transactions(blockData[0]?.txn);
-    // set_recipient(_ => blockData[0]?.feeRecipientNametag)
   };
 
   const startChain = () => {
     const newIntervalId = setInterval(() => {
       set_block_count(prev => prev + 1);
-      // setValues();
     }, block_speed);
 
     setIntervalId(newIntervalId as unknown as number);
@@ -148,7 +147,7 @@ export default function Home() {
         */}
 
         <div id='container'>
-          <Block block_bg_img={block_bg_img}>
+          <Block block_bg_img={block_bg_img} gas_target={gas_target}>
             <GasUsed gas_used_percentage={gas_used_percentage}>
               <GasUsedValue>
                 {gas_used_percentage} full {gas_target} {gas_target?.[0] === '-' ? 'below' : 'above'} target
@@ -212,6 +211,7 @@ const inter = Inter({ subsets: ["latin"] });
 
 interface BlockProps {
   block_bg_img: string;
+  gas_target: string;
 };
 const Block = styled.div<BlockProps>`
   width: 100%;
@@ -219,7 +219,9 @@ const Block = styled.div<BlockProps>`
   background-repeat: repeat;
   background-size: 80px 80px;
   background-color: transparent;
-  background-color: rgba(80, 60, 60, .4);
+  transition-property: background-color;
+  transition-duration: 2s;
+  background-color: ${props => props.gas_target?.[0] === '-' ? 'rgba(60, 60, 80, .4)' : 'rgba(80, 60, 60, .4)'};
   display: flex;
   align-items: end;
   justify-content: center;
