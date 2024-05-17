@@ -154,7 +154,7 @@ export default function Home() {
                 {gas_used_percentage} full {gas_target} {gas_target?.[0] === '-' ? 'below' : 'above'} target
               </GasUsedValue>
               <TransactionCount>
-                {transactions} in block
+                {transactions} transactions in block
               </TransactionCount>
             </GasUsed>
           </Block>
@@ -178,6 +178,7 @@ export default function Home() {
 
         { !intervalId &&
           <div>
+            <Tcount>Block Time:</Tcount>
             <input checked={block_speed / 1000 === 4} type="radio" id="4" name="block_speed" value="4000" onClick={() => set_block_speed(4000)} />
             <label htmlFor="4">4 sec</label>
             <input checked={block_speed / 1000 === 12} type="radio" id="12" name="block_speed" value="12000" onClick={() => set_block_speed(12000)} />
@@ -186,7 +187,7 @@ export default function Home() {
         }
 
         <p>
-          The block time set to 4 seconds per slot to speed things up but can be set when the chain is stopped. I hope to improve on the data visual and still need to work out a formula to get the tips percentage as well as provide a live view of current block. Beyond that maybe look to include <Link href="https://vitalik.eth.limo/general/2024/05/09/multidim.html?">Multidimensional gas pricing</Link> so if you have any comments, questions or ideas for improvment please reach out.</p>
+          I hope to improve on the data visual and still need to work out a formula to get the tips percentage as well as provide a live view of current block. Beyond that maybe look to include <Link href="https://vitalik.eth.limo/general/2024/05/09/multidim.html?">Multidimensional gas pricing</Link> so if you have any comments, questions or ideas for improvment please reach out.</p>
 
         <footer>
           <Link href="https://github.com/Greg-Johns/eip1559">
@@ -328,4 +329,5 @@ const Tcount = styled.div`
   margin-top: 10px;
   padding: 0;
   font-size: 16px;
+  text-align: center;
 `
