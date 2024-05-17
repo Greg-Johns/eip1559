@@ -52,21 +52,22 @@ export default function Home() {
   const reset = () => {
     clearInterval(intervalId);
     setIntervalId(0);
-    set_block_count(0);
-    set_gas_target(blockData[0]?.percentOfGasTarget);
-    set_base_fee(blockData[0]?.baseFee);
-    set_base_fee_height(blockData[0]?.burntFeesPercentage);
-    set_base_fees_value(blockData[0]?.burntFeesEth);
-    set_tips_value(blockData[0]?.reward);
-    set_block_num(19874198)
-    set_gas_used_percentage(blockData[0]?.gasUsedPercentage);
-    set_transactions(blockData[0]?.txn);
-    set_recipient(_ => blockData[0]?.feeRecipientNametag)
+    // set_block_count(0);
+    // set_gas_target(blockData[0]?.percentOfGasTarget);
+    // set_base_fee(blockData[0]?.baseFee);
+    // set_base_fee_height(blockData[0]?.burntFeesPercentage);
+    // set_base_fees_value(blockData[0]?.burntFeesEth);
+    // set_tips_value(blockData[0]?.reward);
+    // set_block_num(19874198)
+    // set_gas_used_percentage(blockData[0]?.gasUsedPercentage);
+    // set_transactions(blockData[0]?.txn);
+    // set_recipient(_ => blockData[0]?.feeRecipientNametag)
   };
 
   const startChain = () => {
     const newIntervalId = setInterval(() => {
       set_block_count(prev => prev + 1);
+      // setValues();
     }, block_speed);
 
     setIntervalId(newIntervalId as unknown as number);
@@ -128,7 +129,7 @@ export default function Home() {
         </FlowImg>
 
         <p>
-          The following shows a block-by-block animation of these key values over block numbers 1987197 to 19874237 from May 15th 2024 for blocks and taken from converting the csv file downloaded from Etherscan. I still need to derive the tip value as it's not given in the data but will get this working soon.
+          The following shows a block-by-block animation of these key values over block numbers 1987197 to 19874237 from May 15th 2024 for blocks and taken from converting the csv file downloaded from Etherscan. I still need to derive the tip value as it&#39;s not given in the data but will get this working soon.
         </p>
 
         {/* 
@@ -152,6 +153,9 @@ export default function Home() {
               <GasUsedValue>
                 {gas_used_percentage} full {gas_target} {gas_target?.[0] === '-' ? 'below' : 'above'} target
               </GasUsedValue>
+              <TransactionCount>
+                {transactions} in block
+              </TransactionCount>
             </GasUsed>
           </Block>
           <GeneralEqualibrium />
@@ -166,25 +170,23 @@ export default function Home() {
         </div>
         
         <h3>Block # {block_num}</h3>
-        <Tcount>Transaction count: {transactions}</Tcount>
-        <Tcount>Base fee for inclusion: {base_fee}</Tcount>
+        <Tcount>Base fee: {base_fee}</Tcount>
        
         <button onClick={playPause}>
           {intervalId ? "Stop chain" : "Start chain"}
         </button>
 
-        {/* <Tcount>Change block time {block_speed / 1000} Seconds</Tcount>
-        <div>
-          <input type="radio" id="4" name="block_speed" value="4000" onClick={() => set_block_speed(4000)} />
-          <label htmlFor="4">4 sec</label>
-          <input type="radio" id="6" name="block_speed" value="6000" onClick={() => set_block_speed(6000)} />
-          <label htmlFor="6">6 sec</label>
-          <input type="radio" id="12" name="block_speed" value="12000" onClick={() => set_block_speed(12000)} />
-          <label htmlFor="12">12 sec</label>
-        </div> */}
+        { !intervalId &&
+          <div>
+            <input checked={block_speed / 1000 === 4} type="radio" id="4" name="block_speed" value="4000" onClick={() => set_block_speed(4000)} />
+            <label htmlFor="4">4 sec</label>
+            <input checked={block_speed / 1000 === 12} type="radio" id="12" name="block_speed" value="12000" onClick={() => set_block_speed(12000)} />
+            <label htmlFor="12">12 sec</label>
+          </div> 
+        }
 
         <p>
-          The block time set to 4 seconds per slot (as opposed to 12) to speed things up a bit. I hope to improve on the data visual and still need to work out a formula to get the tips percentage as well as provide a live view of current block. Beyond that maybe look to include <Link href="https://vitalik.eth.limo/general/2024/05/09/multidim.html?">Multidimensional gas pricing</Link> so if you have any comments, questions or ideas for improvment please reach out.</p>
+          The block time set to 4 seconds per slot to speed things up but can be set when the chain is stopped. I hope to improve on the data visual and still need to work out a formula to get the tips percentage as well as provide a live view of current block. Beyond that maybe look to include <Link href="https://vitalik.eth.limo/general/2024/05/09/multidim.html?">Multidimensional gas pricing</Link> so if you have any comments, questions or ideas for improvment please reach out.</p>
 
         <footer>
           <Link href="https://github.com/Greg-Johns/eip1559">
@@ -237,15 +239,19 @@ const GasUsed = styled.div<GasUsedPRops>`
   background-color: rgb(124, 108, 150);
   border: 1px dashed #D6C7F4;
   border-radius: 2px;
-  display: flex;
-  justify-content: center;
   color: #eee;
 `;
 const GasUsedValue = styled.p`
-  color: #999;
-  margin-top: -20px;
+  color: #fff;
+  margin-top: -22px;
   font-size: 12px;
+  text-align: center;
   z-index: 20;
+`;
+const TransactionCount = styled.div`
+  text-align: center;
+  position: relative;
+  margin-top: -12px;
 `;
 
 const TipsValue = styled.p`
@@ -254,6 +260,7 @@ const TipsValue = styled.p`
 `;
 const BaseValue = styled.p`
   color: rgb(140, 160, 250);
+  margin: 0;
   font-size: 12px;
 `;
 
@@ -320,5 +327,5 @@ const EthLogo = styled.div`
 const Tcount = styled.div`
   margin-top: 10px;
   padding: 0;
-  font-size: 11px;
+  font-size: 16px;
 `
