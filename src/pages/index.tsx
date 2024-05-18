@@ -105,7 +105,7 @@ export default function Home() {
         </EthLogo>
 
         <p>
-          Ethereum&#39;s EIP-1559 is a fee pricing mechanism to help smooth out spikes in gas prices by retroactivily adjusting the gas price per unit of "work" and targets a general equilibrium of 15 million gas units per block by sacraficing the byte size for a 30 million gas unit cap. It introduced a base fee that gets burned to not only help with gas spikes but also help prevent sybil attacks with an additional benefit of helping reduce ETH issuance and at times even making ETH <Link href="https://ultrasound.money/">deflatioinary</Link>.
+          Ethereum&#39;s EIP-1559 is a fee pricing mechanism to help smooth out spikes in gas prices by retroactivily adjusting the gas price per unit of &quot;work&quot; and targets a general equilibrium of 15 million gas units per block by sacraficing the byte size for a 30 million gas unit cap. It introduced a base fee that gets burned to not only help with gas spikes but also help prevent sybil attacks with an additional benefit of helping reduce ETH issuance and at times even making ETH <Link href="https://ultrasound.money/">deflatioinary</Link>.
         </p>
         <p>
           But how does this help with price spikes? If network usage stays above the target level the base fee is adjusted up on following blocks to deter users from sending more transactions which bring congestion down. The opposite happens in low netowrk use to incitivise more transactions. Always trying to pull usage to the target level, as Vitalik put it...
@@ -135,7 +135,7 @@ export default function Home() {
           <Image fetchPriority="high" alt="block flow" src={block_flow} />
         </FlowImg>
 
-        <h3>Incentives at Play</h3>
+        <h3>Block-by-Block</h3>
         <p>
           The animation below shows a block-by-block visual of the total amount of fees used in a block separating out the transactin fees as a percentage of the 30 million gas cap as well as the total base fees and tips paid in the block as a percentage of the transaction fees. The data was taken from converting an Etherscan csv file for block numbers 19,874,197 to 19,874,237 from May 15th 2024.
         </p>
