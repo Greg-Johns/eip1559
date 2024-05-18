@@ -14,19 +14,24 @@ import blockData from "../../public/block-19874196-19874237.json";
 import { Analytics } from '@vercel/analytics/react';
 
 export default function Home() {
+  const calc_tips_percentage = () => {
+    const total_fees = burnt_fees_value * 100 / burnt_fees_percent;
+    const t_percent = tips_value / total_fees * 100;
+    console.log(">", t_percent)
+    return t_percent;
+  };
 
   const block_bg_img = `"data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 500 500' fill-opacity='.4' style='enable-background:new 0 0 500 500'%3E%3Cstyle%3E .st2{fill:rgb(109, 104, 104)} %3C/style%3E%3Cg style='display:none'%3E%3Cpath style='display:inline;fill:%23414042' d='M-8.3-5.7h520.7V511H-8.3z' id='Layer_2'/%3E%3C/g%3E%3Cg id='Layer_1'%3E%3Cpath transform='rotate(-45.001 0 .055)' class='st2' d='M-453.7-3.7h907.5v7.5h-907.5z'/%3E%3Cpath transform='rotate(-45.001 31.25 31.306)' class='st2' d='M-422.5 27.6H485v7.5h-907.5z'/%3E%3Cpath transform='rotate(-45.001 62.5 62.556)' class='st2' d='M-391.2 58.8h907.5v7.5h-907.5z'/%3E%3Cpath transform='rotate(-45.001 93.75 93.807)' class='st2' d='M-360 90.1h907.5v7.5H-360z'/%3E%3Cpath transform='rotate(-45.001 125 125.057)' class='st2' d='M-328.7 121.3h907.5v7.5h-907.5z'/%3E%3Cpath transform='rotate(-45.001 156.249 156.308)' class='st2' d='M-297.5 152.6H610v7.5h-907.5z'/%3E%3Cpath transform='rotate(-45.001 187.499 187.558)' class='st2' d='M-266.2 183.8h907.5v7.5h-907.5z'/%3E%3Cpath transform='rotate(-45.001 218.749 218.809)' class='st2' d='M-235 215.1h907.5v7.5H-235z'/%3E%3Cpath transform='rotate(-45.001 249.998 250.06)' class='st2' d='M-203.7 246.3h907.5v7.5h-907.5z'/%3E%3Cpath transform='rotate(-45.001 281.248 281.31)' class='st2' d='M-172.5 277.6H735v7.5h-907.5z'/%3E%3Cpath transform='rotate(-45.001 312.498 312.56)' class='st2' d='M-141.2 308.8h907.5v7.5h-907.5z'/%3E%3Cpath transform='rotate(-45.001 343.748 343.81)' class='st2' d='M-110 340.1h907.5v7.5H-110z'/%3E%3Cpath transform='rotate(-45.001 374.997 375.061)' class='st2' d='M-78.7 371.3h907.5v7.5H-78.7z'/%3E%3Cpath transform='rotate(-45.001 406.247 406.312)' class='st2' d='M-47.5 402.6H860v7.5H-47.5z'/%3E%3Cpath transform='rotate(-45.001 437.497 437.562)' class='st2' d='M-16.2 433.8h907.5v7.5H-16.2z'/%3E%3Cpath transform='rotate(-45.001 468.747 468.813)' class='st2' d='M15 465.1h907.5v7.5H15z'/%3E%3Cpath transform='rotate(-45.001 499.997 500.064)' class='st2' d='M46.3 496.3h907.5v7.5H46.3z'/%3E%3C/g%3E%3C/svg%3E"
   `;
-
   const [block_count, set_block_count] = useState<number>(0);
-  const [gas_used_percentage, set_gas_used_percentage] = useState<string>(blockData[0].gasUsedPercentage);
-  const [gas_target, set_gas_target] = useState<string>(blockData[0].percentOfGasTarget);
-  const [tips_height, set_tips_height] = useState('10%');
-  const [base_fee, set_base_fee] = useState<string>(blockData[0].baseFee);
-  const [base_fee_height, set_base_fee_height] = useState<string>("0%");
   const [block_num, set_block_num] = useState<number>(blockData[0].block);
-  const [base_fees_value, set_base_fees_value] = useState<number>(blockData[0].burntFeesEth);
-  const [tips_value, set_tips_value] = useState<string>(blockData[0].reward);
+  const [gas_used_percent, set_gas_used_percent] = useState<string>(blockData[0].gasUsedPercentage);
+  const [gas_target, set_gas_target] = useState<string>(blockData[0].percentOfGasTarget);
+  const [base_fee, set_base_fee] = useState<string>(blockData[0].baseFee);
+  const [burnt_fees_value, set_burnt_fees_value] = useState<number>(blockData[0].burntFeesEth);
+  const [burnt_fees_percent, set_burnt_fees_percent] = useState<number>(0);
+  const [tips_value, set_tips_value] = useState<number>(blockData[0].reward);
+  const [tip_fees_percent, set_tip_fees_percent] = useState<number>(0);
   const [transactions, set_transactions] = useState<number>(blockData[0].txn);
   const [block_speed, set_block_speed] = useState<number>(4000);
   const [recipient, set_recipient] = useState<string>(blockData[0].feeRecipientNametag)
@@ -34,25 +39,28 @@ export default function Home() {
   // const block_height: number = 19874200;
   const block_height: number = 19874237;
 
+  useEffect(() => set_tip_fees_percent(calc_tips_percentage()));
+
   useEffect(() => {
     set_block_num(blockData[block_count + 1]?.block);
     set_gas_target(blockData[block_count + 1]?.percentOfGasTarget);
     set_base_fee(blockData[block_count + 1]?.baseFee);
-    set_base_fee_height(blockData[block_count + 1]?.burntFeesPercentage);
-    set_base_fees_value(blockData[block_count + 1]?.burntFeesEth);
+    set_burnt_fees_percent(blockData[block_count + 1]?.burntFeesPercentage);
+    set_burnt_fees_value(blockData[block_count + 1]?.burntFeesEth);
     set_tips_value(blockData[block_count + 1]?.reward);
-    set_gas_used_percentage(blockData[block_count + 1]?.gasUsedPercentage);
+    set_tip_fees_percent(calc_tips_percentage());
+    set_gas_used_percent(blockData[block_count + 1]?.gasUsedPercentage);
     set_transactions(blockData[block_count + 1]?.txn);
     set_recipient(blockData[block_count + 1]?.feeRecipientNametag)
     if (block_num >= block_height) {
       set_block_count(0);
       set_gas_target(blockData[0]?.percentOfGasTarget);
       set_base_fee(blockData[0]?.baseFee);
-      set_base_fee_height(blockData[0]?.burntFeesPercentage);
-      set_base_fees_value(blockData[0]?.burntFeesEth);
+      set_burnt_fees_percent(blockData[0]?.burntFeesPercentage);
+      set_burnt_fees_value(blockData[0]?.burntFeesEth);
       set_tips_value(blockData[0]?.reward);
       set_block_num(19874197)
-      set_gas_used_percentage(blockData[0]?.gasUsedPercentage);
+      set_gas_used_percent(blockData[0]?.gasUsedPercentage);
       set_transactions(blockData[0]?.txn);
       set_recipient(_ => blockData[0]?.feeRecipientNametag)
       reset();
@@ -97,7 +105,7 @@ export default function Home() {
         </EthLogo>
 
         <p>
-          Ethereum&#39;s EIP-1559 is a fee pricing mechanism to help smooth out spikes in gas prices by retroactivily adjusting the gas price per unit of "work" and targets a general equilibrium of 15 million gas units per block by sacraficing the byte size for a 30 million gas unit cap. It introduced a base fee that get&#39;s burned to not only help with gas spikes but also help prevent sybil attacks with an additional benefit of helping reduce ETH issuance and at times even making ETH <Link href="https://ultrasound.money/">deflatioinary</Link>.
+          Ethereum&#39;s EIP-1559 is a fee pricing mechanism to help smooth out spikes in gas prices by retroactivily adjusting the gas price per unit of "work" and targets a general equilibrium of 15 million gas units per block by sacraficing the byte size for a 30 million gas unit cap. It introduced a base fee that gets burned to not only help with gas spikes but also help prevent sybil attacks with an additional benefit of helping reduce ETH issuance and at times even making ETH <Link href="https://ultrasound.money/">deflatioinary</Link>.
         </p>
         <p>
           But how does this help with price spikes? If network usage stays above the target level the base fee is adjusted up on following blocks to deter users from sending more transactions which bring congestion down. The opposite happens in low netowrk use to incitivise more transactions. Always trying to pull usage to the target level, as Vitalik put it...
@@ -132,29 +140,11 @@ export default function Home() {
           The animation below shows a block-by-block visual of the total amount of fees used in a block separating out the transactin fees as a percentage of the 30 million gas cap as well as the total base fees and tips paid in the block as a percentage of the transaction fees. The data was taken from converting an Etherscan csv file for block numbers 19,874,197 to 19,874,237 from May 15th 2024.
         </p>
 
-        {/* 
-           Users pay for transactional units x (baseFee + tip)
-           1200 X (10 gwei + 5 gwei) = 18000 gwei
-           So a users base fee total = baseFee * transactional gas units
-         
-         block: 19874197
-         txn: 231
-        
-         baseFee: 9.63 Gwei
-         gasUsed: 17,593,159
-         gasUsedPercentage: 58.64%
-         percentOfGasTarget: 17% 
-         
-         reward: 0.09534 ETH <- what % of total T fees? 
-         burntFeesEth: 0.169424
-         burntFeesPercentage: 63.99% <- of total transaction fees
-        */}
-
         <div id='container'>
           <Block block_bg_img={block_bg_img} gas_target={gas_target}>
-            <GasUsed gas_used_percentage={gas_used_percentage}>
+            <GasUsed gas_used_percent={gas_used_percent}>
               <GasUsedValue>
-                {gas_used_percentage} full {gas_target} {gas_target?.[0] === '-' ? 'below' : 'above'} target
+                {gas_used_percent} full {gas_target} {gas_target?.[0] === '-' ? 'below' : 'above'} target
               </GasUsedValue>
               <TransactionCount>
                 {transactions} transactions using gasUsed gas units
@@ -162,14 +152,14 @@ export default function Home() {
             </GasUsed>
           </Block>
           <GeneralEqualibrium />
-          <Tips tips_height={tips_height}>
-            <TipsValue>{tips_value} to {recipient}</TipsValue>
-          </Tips>
-          <BaseFeeContainer>
-            <BaseFees base_fee_height={base_fee_height}>
-              <BaseValue>{base_fees_value} ETH</BaseValue>
+          <TipBaseContainer>
+            <Tips tip_fees_percent={tip_fees_percent}>
+              <TipsValue>{tips_value} to {recipient !== "" ? recipient : "no name tag"}</TipsValue>
+            </Tips>
+            <BaseFees burnt_fees_percent={burnt_fees_percent}>
+              <BaseValue>{burnt_fees_value} ETH</BaseValue>
             </BaseFees>
-          </BaseFeeContainer>
+          </TipBaseContainer>
         </div>
 
         <h3>Block # {block_num}</h3>
@@ -234,13 +224,13 @@ const Block = styled.div<BlockProps>`
 `;
 
 interface GasUsedPRops {
-  gas_used_percentage: string;
+  gas_used_percent: string;
 }
 const GasUsed = styled.div<GasUsedPRops>`
   width: 100%;
   transition-property: height;
   transition-duration: 2s;
-  height: ${props => props.gas_used_percentage};
+  height: ${props => props.gas_used_percent};
   background-color: #4E4560;
   background-color: rgb(124, 108, 150);
   border: 1px dashed #D6C7F4;
@@ -280,19 +270,14 @@ const GeneralEqualibrium = styled.p`
   z-index: 1;
 `;
 
-const BaseFeeContainer = styled.div`
-  width: 300px;
-  height: 300px;
-`;
-
 interface BaseFeeProps {
-  base_fee_height: string;
+  burnt_fees_percent: number;
 }
 const BaseFees = styled.div<BaseFeeProps>`
   width: 100%;
   transition-property: height;
   transition-duration: 2s;
-  height: ${props => props.base_fee_height};
+  height: ${props => props.burnt_fees_percent}%;
   background-color: #4E5F73;
   border: 1px dashed #B8FAF6;
   border-radius: 2px;
@@ -303,12 +288,17 @@ const BaseFees = styled.div<BaseFeeProps>`
   color: #eee;
 `;
 
+const TipBaseContainer = styled.div`
+  height: 300px;
+`
 interface TipsProps {
-  tips_height: string;
+  tip_fees_percent: number;
 };
 const Tips = styled.div<TipsProps>`
   width: 100%;
-  height: 20px;
+  transition-property: height;
+  transition-duration: 2s;
+  height: ${props => props.tip_fees_percent}%;
   margin: 4px;
   background-color: #6C5751;
   border: 1px dashed #F0CDC2;

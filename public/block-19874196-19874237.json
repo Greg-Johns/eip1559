@@ -10,9 +10,9 @@
    "percentOfGasTarget": "-36%",
    "gasLimit": "30,000,000",
    "baseFee": "10.08 Gwei",
-   "reward": "0.03204 ETH",
+   "reward": 0.03204,
    "burntFeesEth": 0.09638,
-   "burntFeesPercentage": "75.04%"
+   "burntFeesPercentage": 75.04
  },
  {
    "block": 19874197,
@@ -25,9 +25,9 @@
    "percentOfGasTarget": "17%",
    "gasLimit": "30,000,000",
    "baseFee": "9.63 Gwei",
-   "reward": "0.09534 ETH",
+   "reward": 0.09534,
    "burntFeesEth": 0.169424,
-   "burntFeesPercentage": "63.99%"
+   "burntFeesPercentage": 63.99
  },
  {
    "block": 19874198,
@@ -40,9 +40,9 @@
    "percentOfGasTarget": "-17%",
    "gasLimit": "30,000,000",
    "baseFee": "9.83 Gwei",
-   "reward": "0.03546 ETH",
+   "reward": 0.03546,
    "burntFeesEth": 0.122032,
-   "burntFeesPercentage": "77.48%"
+   "burntFeesPercentage": 77.48
  },
  {
    "block": 19874199,
@@ -55,9 +55,9 @@
    "percentOfGasTarget": "-24%",
    "gasLimit": "30,000,000",
    "baseFee": "9.62 Gwei",
-   "reward": "0.00699 ETH",
+   "reward": 0.00699,
    "burntFeesEth": 0.109905,
-   "burntFeesPercentage": "94.02%"
+   "burntFeesPercentage": 94.02
  },
  {
    "block": 19874200,
@@ -70,9 +70,9 @@
    "percentOfGasTarget": "39%",
    "gasLimit": "30,000,000",
    "baseFee": "9.33 Gwei",
-   "reward": "0.0812 ETH",
+   "reward": 0.0812,
    "burntFeesEth": 0.194772,
-   "burntFeesPercentage": "70.58%"
+   "burntFeesPercentage": 70.58
  },
  {
    "block": 19874201,
@@ -85,9 +85,9 @@
    "percentOfGasTarget": "-11%",
    "gasLimit": "30,000,000",
    "baseFee": "9.79 Gwei",
-   "reward": "0.086 ETH",
+   "reward": 0.086,
    "burntFeesEth": 0.130647,
-   "burntFeesPercentage": "60.30%"
+   "burntFeesPercentage": 60.30
  },
  {
    "block": 19874202,
@@ -100,9 +100,9 @@
    "percentOfGasTarget": "26%",
    "gasLimit": "30,000,000",
    "baseFee": "9.65 Gwei",
-   "reward": "0.05912 ETH",
+   "reward": 0.05912,
    "burntFeesEth": 0.182278,
-   "burntFeesPercentage": "75.51%"
+   "burntFeesPercentage": 75.51
  },
  {
    "block": 19874203,
@@ -115,9 +115,9 @@
    "percentOfGasTarget": "-13%",
    "gasLimit": "30,000,000",
    "baseFee": "9.97 Gwei",
-   "reward": "0.0405 ETH",
+   "reward": 0.0405,
    "burntFeesEth": 0.130727,
-   "burntFeesPercentage": "76.35%"
+   "burntFeesPercentage": 76.35
  },
  {
    "block": 19874204,
@@ -130,9 +130,9 @@
    "percentOfGasTarget": "-5%",
    "gasLimit": "30,000,000",
    "baseFee": "9.81 Gwei",
-   "reward": "0.02517 ETH",
+   "reward": 0.02517,
    "burntFeesEth": 0.139298,
-   "burntFeesPercentage": "84.69%"
+   "burntFeesPercentage": 84.69
  },
  {
    "block": 19874205,
@@ -145,9 +145,9 @@
    "percentOfGasTarget": "-7%",
    "gasLimit": "30,000,000",
    "baseFee": "9.74 Gwei",
-   "reward": "0.12628 ETH",
+   "reward": 0.12628,
    "burntFeesEth": 0.136031,
-   "burntFeesPercentage": "51.86%"
+   "burntFeesPercentage": 51.86
  },
  {
    "block": 19874206,
@@ -160,9 +160,9 @@
    "percentOfGasTarget": "-4%",
    "gasLimit": "30,000,000",
    "baseFee": "9.66 Gwei",
-   "reward": "0.03259 ETH",
+   "reward": 0.03259,
    "burntFeesEth": 0.13923,
-   "burntFeesPercentage": "81.03%"
+   "burntFeesPercentage": 81.03
  },
  {
    "block": 19874207,
@@ -175,9 +175,9 @@
    "percentOfGasTarget": "-17%",
    "gasLimit": "30,000,000",
    "baseFee": "9.61 Gwei",
-   "reward": "0.03572 ETH",
+   "reward": 0.03572,
    "burntFeesEth": 0.119742,
-   "burntFeesPercentage": "77.02%"
+   "burntFeesPercentage": 77.02
  },
  {
    "block": 19874208,
@@ -190,9 +190,9 @@
    "percentOfGasTarget": "52%",
    "gasLimit": "30,000,000",
    "baseFee": "9.41 Gwei",
-   "reward": "0.04668 ETH",
+   "reward": 0.04668,
    "burntFeesEth": 0.214249,
-   "burntFeesPercentage": "82.11%"
+   "burntFeesPercentage": 82.11
  },
  {
    "block": 19874209,
@@ -205,9 +205,9 @@
    "percentOfGasTarget": "38%",
    "gasLimit": "30,000,000",
    "baseFee": "10.02 Gwei",
-   "reward": "0.05554 ETH",
+   "reward": 0.05554,
    "burntFeesEth": 0.208111,
-   "burntFeesPercentage": "78.93%"
+   "burntFeesPercentage": 78.93
  },
  {
    "block": 19874210,
@@ -220,9 +220,9 @@
    "percentOfGasTarget": "-3%",
    "gasLimit": "30,000,000",
    "baseFee": "10.5 Gwei",
-   "reward": "0.06435 ETH",
+   "reward": 0.06435,
    "burntFeesEth": 0.152577,
-   "burntFeesPercentage": "70.33%"
+   "burntFeesPercentage": 70.33
  },
  {
    "block": 19874211,
@@ -235,9 +235,9 @@
    "percentOfGasTarget": "-13%",
    "gasLimit": "30,000,000",
    "baseFee": "10.46 Gwei",
-   "reward": "0.10181 ETH",
+   "reward": 0.10181,
    "burntFeesEth": 0.13643,
-   "burntFeesPercentage": "57.26%"
+   "burntFeesPercentage": 57.26
  },
  {
    "block": 19874212,
@@ -250,9 +250,9 @@
    "percentOfGasTarget": "0%",
    "gasLimit": "30,000,000",
    "baseFee": "10.28 Gwei",
-   "reward": "0.06368 ETH",
+   "reward": 0.06368,
    "burntFeesEth": 0.154384,
-   "burntFeesPercentage": "70.80%"
+   "burntFeesPercentage": 70.80
  },
  {
    "block": 19874213,
@@ -265,9 +265,9 @@
    "percentOfGasTarget": "-22%",
    "gasLimit": "30,000,000",
    "baseFee": "10.29 Gwei",
-   "reward": "0.05349 ETH",
+   "reward": 0.05349,
    "burntFeesEth": 0.120031,
-   "burntFeesPercentage": "69.17%"
+   "burntFeesPercentage": 69.17
  },
  {
    "block": 19874214,
@@ -280,9 +280,9 @@
    "percentOfGasTarget": "-14%",
    "gasLimit": "30,000,000",
    "baseFee": "10 Gwei",
-   "reward": "0.10143 ETH",
+   "reward": 0.10143,
    "burntFeesEth": 0.128427,
-   "burntFeesPercentage": "55.87%"
+   "burntFeesPercentage": 55.87
  },
  {
    "block": 19874215,
@@ -295,9 +295,9 @@
    "percentOfGasTarget": "29%",
    "gasLimit": "30,000,000",
    "baseFee": "9.82 Gwei",
-   "reward": "0.08681 ETH",
+   "reward": 0.08681,
    "burntFeesEth": 0.189735,
-   "burntFeesPercentage": "68.61%"
+   "burntFeesPercentage": 68.61
  },
  {
    "block": 19874216,
@@ -310,9 +310,9 @@
    "percentOfGasTarget": "-24%",
    "gasLimit": "30,000,000",
    "baseFee": "10.17 Gwei",
-   "reward": "0.05784 ETH",
+   "reward": 0.05784,
    "burntFeesEth": 0.116544,
-   "burntFeesPercentage": "66.83%"
+   "burntFeesPercentage": 66.83
  },
  {
    "block": 19874217,
@@ -325,9 +325,9 @@
    "percentOfGasTarget": "47%",
    "gasLimit": "30,000,000",
    "baseFee": "9.87 Gwei",
-   "reward": "0.06472 ETH",
+   "reward": 0.06472,
    "burntFeesEth": 0.218435,
-   "burntFeesPercentage": "77.14%"
+   "burntFeesPercentage": 77.14
  },
  {
    "block": 19874218,
@@ -340,9 +340,9 @@
    "percentOfGasTarget": "-6%",
    "gasLimit": "30,000,000",
    "baseFee": "10.46 Gwei",
-   "reward": "0.07511 ETH",
+   "reward": 0.07511,
    "burntFeesEth": 0.147765,
-   "burntFeesPercentage": "66.30%"
+   "burntFeesPercentage": 66.30
  },
  {
    "block": 19874219,
@@ -355,9 +355,9 @@
    "percentOfGasTarget": "-6%",
    "gasLimit": "30,000,000",
    "baseFee": "10.38 Gwei",
-   "reward": "0.04041 ETH",
+   "reward": 0.04041,
    "burntFeesEth": 0.145709,
-   "burntFeesPercentage": "78.29%"
+   "burntFeesPercentage": 78.29
  },
  {
    "block": 19874220,
@@ -370,9 +370,9 @@
    "percentOfGasTarget": "-10%",
    "gasLimit": "30,000,000",
    "baseFee": "10.3 Gwei",
-   "reward": "0.02305 ETH",
+   "reward": 0.02305,
    "burntFeesEth": 0.139064,
-   "burntFeesPercentage": "85.78%"
+   "burntFeesPercentage": 85.78
  },
  {
    "block": 19874221,
@@ -385,9 +385,9 @@
    "percentOfGasTarget": "-30%",
    "gasLimit": "30,000,000",
    "baseFee": "10.17 Gwei",
-   "reward": "0.06197 ETH",
+   "reward": 0.06197,
    "burntFeesEth": 0.106467,
-   "burntFeesPercentage": "63.21%"
+   "burntFeesPercentage": 63.21
  },
  {
    "block": 19874222,
@@ -400,9 +400,9 @@
    "percentOfGasTarget": "35%",
    "gasLimit": "30,000,000",
    "baseFee": "9.78 Gwei",
-   "reward": "0.05611 ETH",
+   "reward": 0.05611,
    "burntFeesEth": 0.198068,
-   "burntFeesPercentage": "77.92%"
+   "burntFeesPercentage": 77.92
  },
  {
    "block": 19874223,
@@ -415,9 +415,9 @@
    "percentOfGasTarget": "7%",
    "gasLimit": "30,000,000",
    "baseFee": "10.21 Gwei",
-   "reward": "0.20157 ETH",
+   "reward": 0.20157,
    "burntFeesEth": 0.163395,
-   "burntFeesPercentage": "44.77%"
+   "burntFeesPercentage": 44.77
  },
  {
    "block": 19874224,
@@ -430,9 +430,9 @@
    "percentOfGasTarget": "-35%",
    "gasLimit": "30,000,000",
    "baseFee": "10.3 Gwei",
-   "reward": "0.03316 ETH",
+   "reward": 0.03316,
    "burntFeesEth": 0.100088,
-   "burntFeesPercentage": "75.11%"
+   "burntFeesPercentage": 75.11
  },
  {
    "block": 19874225,
@@ -445,9 +445,9 @@
    "percentOfGasTarget": "-10%",
    "gasLimit": "30,000,000",
    "baseFee": "9.84 Gwei",
-   "reward": "0.09142 ETH",
+   "reward": 0.09142,
    "burntFeesEth": 0.13311,
-   "burntFeesPercentage": "59.28%"
+   "burntFeesPercentage": 59.28
  },
  {
    "block": 19874226,
@@ -460,9 +460,9 @@
    "percentOfGasTarget": "11%",
    "gasLimit": "30,000,000",
    "baseFee": "9.72 Gwei",
-   "reward": "0.11168 ETH",
+   "reward": 0.11168,
    "burntFeesEth": 0.161779,
-   "burntFeesPercentage": "59.16%"
+   "burntFeesPercentage": 59.16
  },
  {
    "block": 19874227,
@@ -475,9 +475,9 @@
    "percentOfGasTarget": "-37%",
    "gasLimit": "30,000,000",
    "baseFee": "9.85 Gwei",
-   "reward": "0.02391 ETH",
+   "reward": 0.02391,
    "burntFeesEth": 0.093062,
-   "burntFeesPercentage": "79.56%"
+   "burntFeesPercentage": 79.56
  },
  {
    "block": 19874228,
@@ -490,9 +490,9 @@
    "percentOfGasTarget": "-75%",
    "gasLimit": "30,000,000",
    "baseFee": "9.4 Gwei",
-   "reward": "0.01041 ETH",
+   "reward": 0.01041,
    "burntFeesEth": 0.034675,
-   "burntFeesPercentage": "76.91%"
+   "burntFeesPercentage": 76.91
  },
  {
    "block": 19874229,
@@ -505,9 +505,9 @@
    "percentOfGasTarget": "100%",
    "gasLimit": "30,000,000",
    "baseFee": "8.51 Gwei",
-   "reward": "0.14566 ETH",
+   "reward": 0.14566,
    "burntFeesEth": 0.255284,
-   "burntFeesPercentage": "63.67%"
+   "burntFeesPercentage": 63.67
  },
  {
    "block": 19874230,
@@ -520,9 +520,9 @@
    "percentOfGasTarget": "-11%",
    "gasLimit": "30,000,000",
    "baseFee": "9.57 Gwei",
-   "reward": "0.09455 ETH",
+   "reward": 0.09455,
    "burntFeesEth": 0.127565,
-   "burntFeesPercentage": "57.43%"
+   "burntFeesPercentage": 57.43
  },
  {
    "block": 19874231,
@@ -535,9 +535,9 @@
    "percentOfGasTarget": "-21%",
    "gasLimit": "30,000,000",
    "baseFee": "9.44 Gwei",
-   "reward": "0.0357 ETH",
+   "reward": 0.0357,
    "burntFeesEth": 0.112356,
-   "burntFeesPercentage": "75.89%"
+   "burntFeesPercentage": 75.89
  },
  {
    "block": 19874232,
@@ -550,9 +550,9 @@
    "percentOfGasTarget": "4%",
    "gasLimit": "30,000,000",
    "baseFee": "9.19 Gwei",
-   "reward": "0.08006 ETH",
+   "reward": 0.08006,
    "burntFeesEth": 0.142945,
-   "burntFeesPercentage": "64.10%"
+   "burntFeesPercentage": 64.10
  },
  {
    "block": 19874233,
@@ -565,9 +565,9 @@
    "percentOfGasTarget": "5%",
    "gasLimit": "30,000,000",
    "baseFee": "9.24 Gwei",
-   "reward": "0.12245 ETH",
+   "reward": 0.12245,
    "burntFeesEth": 0.144955,
-   "burntFeesPercentage": "54.21%"
+   "burntFeesPercentage": 54.21
  },
  {
    "block": 19874234,
@@ -580,9 +580,9 @@
    "percentOfGasTarget": "11%",
    "gasLimit": "30,000,000",
    "baseFee": "9.29 Gwei",
-   "reward": "0.08104 ETH",
+   "reward": 0.08104,
    "burntFeesEth": 0.155429,
-   "burntFeesPercentage": "65.73%"
+   "burntFeesPercentage": 65.73
  },
  {
    "block": 19874235,
@@ -595,9 +595,9 @@
    "percentOfGasTarget": "-23%",
    "gasLimit": "30,000,000",
    "baseFee": "9.42 Gwei",
-   "reward": "0.05179 ETH",
+   "reward": 0.05179,
    "burntFeesEth": 0.108517,
-   "burntFeesPercentage": "67.69%"
+   "burntFeesPercentage": 67.69
  },
  {
    "block": 19874236,
@@ -610,9 +610,9 @@
    "percentOfGasTarget": "-75%",
    "gasLimit": "30,000,000",
    "baseFee": "9.15 Gwei",
-   "reward": "0.03638 ETH",
+   "reward": 0.03638,
    "burntFeesEth": 0.034983,
-   "burntFeesPercentage": "49.02%"
+   "burntFeesPercentage": 49.02
  },
  {
    "block": 19874237,
@@ -625,8 +625,8 @@
    "percentOfGasTarget": "40%",
    "gasLimit": "30,000,000",
    "baseFee": "8.3 Gwei",
-   "reward": "0.07184 ETH",
+   "reward": 0.07184,
    "burntFeesEth": 0.174638,
-   "burntFeesPercentage": "70.85%"
+   "burntFeesPercentage": 70.85
  }
 ]
