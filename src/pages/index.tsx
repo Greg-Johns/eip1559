@@ -97,29 +97,29 @@ export default function Home() {
         </EthLogo>
 
         <p>
-          Ethereum&#39;s EIP-1559 is a fee pricing mechanism to help smooth out spikes in gas prices and targets a general equilibrium of 15 million gwei per block.  It introduced a base fee that get&#39;s burned this helps with sybil and spam attacks with an additional benefit of helping reduce ETH issuance and at times even making Eth <Link href="https://ultrasound.money/">deflatioinary</Link>.
+          Ethereum&#39;s EIP-1559 is a fee pricing mechanism to help smooth out spikes in gas prices by retroactivily adjusting the gas price per unit of "work" and targets a general equilibrium of 15 million gas units per block by sacraficing the byte size for a 30 million gas unit cap. It introduced a base fee that get&#39;s burned to not only help with gas spikes but also help prevent sybil attacks with an additional benefit of helping reduce ETH issuance and at times even making ETH <Link href="https://ultrasound.money/">deflatioinary</Link>.
         </p>
         <p>
-          The base fee is adjusted up or down every block so that the average gas usage per-block remains at a level close to the current gas limit and introduced a cap on transactional gas units a block may have in exchange for a variable byte block size.  As Vitalik points out.
+          But how does this help with price spikes? If network usage stays above the target level the base fee is adjusted up on following blocks to deter users from sending more transactions which bring congestion down. The opposite happens in low netowrk use to incitivise more transactions. Always trying to pull usage to the target level, as Vitalik put it...
         </p>
 
         <aside>
-          Essentially, instead of all of the short-term volatility in demand for transaction space within a block translating into volatility in transaction fees, some of the volatility instead translates into volatility in block size.
+          Instead of all of the short-term volatility in demand for transaction space within a block translating into volatility in transaction fees, some of the volatility instead translates into volatility in block size.
           <Link href="https://notes.ethereum.org/@vbuterin/eip-1559-faq">- V. Buterin</Link>
         </aside>
 
         <p>
-          Viewing Etherscan charts for <Link href="https://etherscan.io/chart/gaslimit">network utilization</Link> and for <Link href="https://etherscan.io/chart/networkutilization">average gas limit used</Link> we can observe some positive results towards EIP-1559&#39;s goals and viewing information on the <Link href="https://etherscan.io/blocks">latest blocks</Link> we can see how some of these key metrics change on a per block basis. Let&#39;s take this spreadsheet style format and visualize some of key variables in a way to better see how EIP-1559 works that feels more intuitive.
+          Viewing Etherscan charts for <Link href="https://etherscan.io/chart/gaslimit">network utilization</Link> and <Link href="https://etherscan.io/chart/networkutilization">average gas limit used</Link> we can see positive results towards those goals. Reading the information on the <Link href="https://etherscan.io/blocks">latest blocks</Link> we can surmize from the numbers how some of these key metrics change on a per block basis. But how can we get a more intuitive sense of how the mechanism works? Let&#39;s take this spreadsheet of numbers and visualize some of key variables in a way to intuitivly understand how EIP-1559.
         </p>
 
-        <h3>User Transactions</h3>
+        <h3>Prologue: User Transactions</h3>
         <p>
-          When a user submits a transaction on Ethereum the total fees are calculated by adding the base fee and tip together then muliplying the gas units needed for computation and storage. These transactions are picked up by validator nodes and put in the mempool for inclusion into a block.
+          When a user submits a transaction on Ethereum the total fees are calculated by adding the base fee and tip together then muliplying the <i>gas units</i> needed for computation and storage. These transactions are picked up by validator nodes and put in the mempool for inclusion into a block.
         </p>
 
-        <h3>Proposer / Block Builder</h3>
+        <h3>Mechanism incintive 1 - Proposer / Block Builder</h3>
         <p>
-          The proposer picks transactions from the mempool to pack into a block that is then broadcasted to the network. Ignoring MEV, generaly the proposer is incentivized to fill as much of the 30 million limit with transactions that pay the highest paying tips.
+          The proposing validator picks transactions from the mempool to pack into a block that is broadcast to the network. Ignoring MEV, the proposer is incentivized to fill as much of the 30 million limit with transactions that pay the highest paying tips. Here we can start to visualize how the mechanics (incitives) of the EIP works.
         </p>
 
 
@@ -127,23 +127,27 @@ export default function Home() {
           <Image fetchPriority="high" alt="block flow" src={block_flow} />
         </FlowImg>
 
+        <h3>Incentives at Play</h3>
         <p>
-          The following shows a block-by-block animation of these key values over block numbers 1987197 to 19874237 from May 15th 2024 for blocks and taken from converting the csv file downloaded from Etherscan. I still need to derive the tip value as it&#39;s not given in the data but will get this working soon.
+          The animation below shows a block-by-block visual of the total amount of fees used in a block separating out the transactin fees as a percentage of the 30 million gas cap as well as the total base fees and tips paid in the block as a percentage of the transaction fees. The data was taken from converting an Etherscan csv file for block numbers 19,874,197 to 19,874,237 from May 15th 2024.
         </p>
 
         {/* 
-        tu x (bf + tip)
-        1200 X (10 gwei + 5 gwei) = 18000 gwei
-
-        baseFee: 10.08 Gwei,
-        gasUsed: 9,553,962,
-        gasUsedPercentage: 31.85%,
-        percentOfGasTarget: -36%,
-
-        reward: 0.03204 ETH, <- what % of total transaction fees
-        burntFeesEth: 0.09638,
-        burntFeesPercentage: 75.04% <- of total transaction fees
-        users base fee total = baseFee * transactional gas units
+           Users pay for transactional units x (baseFee + tip)
+           1200 X (10 gwei + 5 gwei) = 18000 gwei
+           So a users base fee total = baseFee * transactional gas units
+         
+         block: 19874197
+         txn: 231
+        
+         baseFee: 9.63 Gwei
+         gasUsed: 17,593,159
+         gasUsedPercentage: 58.64%
+         percentOfGasTarget: 17% 
+         
+         reward: 0.09534 ETH <- what % of total T fees? 
+         burntFeesEth: 0.169424
+         burntFeesPercentage: 63.99% <- of total transaction fees
         */}
 
         <div id='container'>
@@ -153,7 +157,7 @@ export default function Home() {
                 {gas_used_percentage} full {gas_target} {gas_target?.[0] === '-' ? 'below' : 'above'} target
               </GasUsedValue>
               <TransactionCount>
-                {transactions} transactions in block
+                {transactions} transactions using gasUsed gas units
               </TransactionCount>
             </GasUsed>
           </Block>
@@ -167,23 +171,21 @@ export default function Home() {
             </BaseFees>
           </BaseFeeContainer>
         </div>
-        
+
         <h3>Block # {block_num}</h3>
         <Tcount>Base fee: {base_fee}</Tcount>
-       
+
         <button onClick={playPause}>
           {intervalId ? "Stop chain" : "Start chain"}
         </button>
 
-        { !intervalId &&
-          <div>
-            <Tcount>Block Time:</Tcount>
-            <input checked={block_speed / 1000 === 4} type="radio" id="4" name="block_speed" value="4000" onClick={() => set_block_speed(4000)} />
-            <label htmlFor="4">4 sec</label>
-            <input checked={block_speed / 1000 === 12} type="radio" id="12" name="block_speed" value="12000" onClick={() => set_block_speed(12000)} />
-            <label htmlFor="12">12 sec</label>
-          </div> 
-        }
+        <div>
+          <Tcount>Block Time:</Tcount>
+          <input disabled={intervalId !== 0} checked={block_speed / 1000 === 4} type="radio" id="4" name="block_speed" value="4000" onClick={() => set_block_speed(4000)} />
+          <label htmlFor="4">4 sec</label>
+          <input disabled={intervalId !== 0} checked={block_speed / 1000 === 12} type="radio" id="12" name="block_speed" value="12000" onClick={() => set_block_speed(12000)} />
+          <label htmlFor="12">12 sec</label>
+        </div>
 
         <p>
           I hope to improve on the data visual and still need to work out a formula to get the tips percentage as well as provide a live view of current block. Beyond that maybe look to include <Link href="https://vitalik.eth.limo/general/2024/05/09/multidim.html?">Multidimensional gas pricing</Link> so if you have any comments, questions or ideas for improvment please reach out.</p>
@@ -228,6 +230,7 @@ const Block = styled.div<BlockProps>`
   border: 2px solid rgba(90, 90, 90, .8);
   border-radius: 2px;
   background-image: url(${props => props.block_bg_img});
+  padding: 3px;
 `;
 
 interface GasUsedPRops {
