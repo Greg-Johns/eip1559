@@ -17,7 +17,6 @@ export default function Home() {
   const calc_tips_percentage = () => {
     const total_fees = burnt_fees_value * 100 / burnt_fees_percent;
     const t_percent = tips_value / total_fees * 100;
-    console.log(">", t_percent)
     return t_percent;
   };
 
@@ -25,6 +24,7 @@ export default function Home() {
   `;
   const [block_count, set_block_count] = useState<number>(0);
   const [block_num, set_block_num] = useState<number>(blockData[0].block);
+  const [gas_used, set_gas_used] = useState<string>(blockData[0].gasUsed);
   const [gas_used_percent, set_gas_used_percent] = useState<string>(blockData[0].gasUsedPercentage);
   const [gas_target, set_gas_target] = useState<string>(blockData[0].percentOfGasTarget);
   const [base_fee, set_base_fee] = useState<string>(blockData[0].baseFee);
@@ -49,6 +49,7 @@ export default function Home() {
     set_burnt_fees_value(blockData[block_count + 1]?.burntFeesEth);
     set_tips_value(blockData[block_count + 1]?.reward);
     set_tip_fees_percent(calc_tips_percentage());
+    set_gas_used(blockData[block_count + 1]?.gasUsed);
     set_gas_used_percent(blockData[block_count + 1]?.gasUsedPercentage);
     set_transactions(blockData[block_count + 1]?.txn);
     set_recipient(blockData[block_count + 1]?.feeRecipientNametag)
@@ -60,6 +61,7 @@ export default function Home() {
       set_burnt_fees_value(blockData[0]?.burntFeesEth);
       set_tips_value(blockData[0]?.reward);
       set_block_num(19874197)
+      set_gas_used(blockData[0]?.gasUsed);
       set_gas_used_percent(blockData[0]?.gasUsedPercentage);
       set_transactions(blockData[0]?.txn);
       set_recipient(_ => blockData[0]?.feeRecipientNametag)
@@ -147,7 +149,7 @@ export default function Home() {
                 {gas_used_percent} full {gas_target} {gas_target?.[0] === '-' ? 'below' : 'above'} target
               </GasUsedValue>
               <TransactionCount>
-                {transactions} transactions using gasUsed gas units
+                {transactions} transactions using {gas_used} gas units
               </TransactionCount>
             </GasUsed>
           </Block>
@@ -223,10 +225,10 @@ const Block = styled.div<BlockProps>`
   padding: 3px;
 `;
 
-interface GasUsedPRops {
+interface GasUsedProps {
   gas_used_percent: string;
 }
-const GasUsed = styled.div<GasUsedPRops>`
+const GasUsed = styled.div<GasUsedProps>`
   width: 100%;
   transition-property: height;
   transition-duration: 2s;
@@ -234,7 +236,7 @@ const GasUsed = styled.div<GasUsedPRops>`
   background-color: #4E4560;
   background-color: rgb(124, 108, 150);
   border: 1px dashed #D6C7F4;
-  border-radius: 2px;
+  border-radius: 0 0 2px 2px;
   color: #eee;
 `;
 const GasUsedValue = styled.p`
@@ -263,12 +265,25 @@ const BaseValue = styled.p`
 const GeneralEqualibrium = styled.p`
   margin-top: -151px;
   margin-bottom: 152px;
-  margin-left: -2px;
-  width: 304px;
-  border: .5px solid #46C63B;
+  margin-left: -4px;
+  width: 306px;
+  border: .5px dashed #46C63B;
   position: relative;
   z-index: 1;
+  &::after {
+    position: absolute;
+    top: -9px;
+    width: 120px;
+    left: 304px;
+    color: #46C63B;
+    font-size: 11px;
+    content: '● Target 15,000,000';
+  }
 `;
+
+const TipBaseContainer = styled.div`
+  height: 300px;
+`
 
 interface BaseFeeProps {
   burnt_fees_percent: number;
@@ -288,9 +303,6 @@ const BaseFees = styled.div<BaseFeeProps>`
   color: #eee;
 `;
 
-const TipBaseContainer = styled.div`
-  height: 300px;
-`
 interface TipsProps {
   tip_fees_percent: number;
 };

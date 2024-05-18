@@ -1,18 +1,18 @@
 [
  {
-   "block": 19874196,
-   "dateTimeUTC": "2024-05-15 08:30:47",
-   "txn": 157,
-   "feeRecipient": "0x95222290dd7278aa3ddd389cc1e1d165cc4bafe5",
-   "feeRecipientNametag": "beaverbuild",
-   "gasUsed": "9,553,962",
-   "gasUsedPercentage": "31.85%",
-   "percentOfGasTarget": "-36%",
-   "gasLimit": "30,000,000",
-   "baseFee": "10.08 Gwei",
-   "reward": 0.03204,
-   "burntFeesEth": 0.09638,
-   "burntFeesPercentage": 75.04
+   "block": 0,
+   "dateTimeUTC": "",
+   "txn": 0,
+   "feeRecipient": "",
+   "feeRecipientNametag": "",
+   "gasUsed": "",
+   "gasUsedPercentage": "",
+   "percentOfGasTarget": "",
+   "gasLimit": "",
+   "baseFee": "",
+   "reward": 0,
+   "burntFeesEth": 0,
+   "burntFeesPercentage": 0
  },
  {
    "block": 19874197,
