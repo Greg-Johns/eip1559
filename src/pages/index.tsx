@@ -217,6 +217,17 @@ const Block = styled.div<BlockProps>`
   border-radius: 2px;
   background-image: url(${props => props.block_bg_img});
   padding: 3px;
+  position: relative;
+  &::after {
+    position: absolute;
+    top: 150px;
+    width: 120px;
+    height: 300px;
+    right: 214px;
+    color: #777;
+    font-size: 11px;
+    content: 'Block';
+  }
 `;
 
 interface GasUsedProps {
@@ -249,11 +260,35 @@ const TransactionCount = styled.div`
 const TipsValue = styled.p`
   color: #F0CDC2;
   font-size: 12px;
+  position: relative;
+  width: 300px;
+  text-align: center;
+  &::after {
+    position: absolute;
+    top: 0px;
+    width: 80px;
+    height: 300px;
+    right: 280px;
+    color: #777;
+    font-size: 11px;
+    content: 'Priority fees';
+  }
 `;
 const BaseValue = styled.p`
   color: rgb(140, 160, 250);
   margin: 0;
   font-size: 12px;
+  position: relative;
+  &::after {
+    position: absolute;
+    top: 0px;
+    width: 54px;
+    height: 300px;
+    right: 200px;
+    color: #777;
+    font-size: 11px;
+    content: 'Base fees';
+  }
 `;
 
 const GeneralEqualibrium = styled.p`
