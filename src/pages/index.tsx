@@ -107,10 +107,10 @@ export default function Home() {
         </EthLogo>
 
         <p>
-          Ethereum&#39;s EIP-1559 is a fee pricing mechanism to help smooth out spikes in gas prices by retroactivily adjusting the gas price per unit of &quot;work&quot; and targets a general equilibrium of 15 million gas units per block by sacraficing the byte size for a 30 million gas unit cap. It introduced a base fee that gets burned to not only help with gas spikes but also help prevent sybil attacks with an additional benefit of helping reduce ETH issuance and at times even making ETH <Link href="https://ultrasound.money/">deflatioinary</Link>.
+          Ethereum&#39;s EIP-1559 is a fee pricing mechanism to help smooth out spikes in gas prices. It introduced a base fee transactions will need to pay that will get sent to a burner address when put into a block. This helps with not only gas spikes but also helps prevent sybil attacks with an additional benefit of helping reduce ETH issuance and at times even making ETH <Link href="https://ultrasound.money/">deflatioinary</Link>.
         </p>
         <p>
-          But how does this help with price spikes? If network usage stays above the target level the base fee is adjusted up on following blocks to deter users from sending more transactions which bring congestion down. The opposite happens in low netowrk use to incitivise more transactions. Always trying to pull usage to the target level, as Vitalik put it...
+          But how does it help with price spikes?  Along with the base fee EIP-1559 also introduced a variable byte block size in favor of a fixed cap of 30 million gas units that can be put in a block. The price per gas unit is adjusted up or down based off the previous blocks usage. If usage was over half the gas cap (15 million) gas prices go up 125% to deter more transactions. The opposite happens in low netowrk use to incitivise more transactions. Always trying to pull usage to the target of 15 million gas units per block, as Vitalik put it...
         </p>
 
         <aside>
@@ -124,14 +124,8 @@ export default function Home() {
 
         <h3>Prologue: User Transactions</h3>
         <p>
-          When a user submits a transaction on Ethereum the total fees are calculated by adding the base fee and tip together then muliplying the <i>gas units</i> needed for computation and storage. These transactions are picked up by validator nodes and put in the mempool for inclusion into a block.
+          When a user submits a transaction on Ethereum the total fees are calculated by adding the base fee and tip together then muliplying the <i>gas units</i> needed for computation and storage. These transactions are picked up by validator nodes and put in the mempool for inclusion into a block. Here we can start to visualize how the mechanics (incitives) of the EIP works.
         </p>
-
-        <h3>Mechanism incintive 1 - Proposer / Block Builder</h3>
-        <p>
-          The proposing validator picks transactions from the mempool to pack into a block that is broadcast to the network. Ignoring MEV, the proposer is incentivized to fill as much of the 30 million limit with transactions that pay the highest paying tips. Here we can start to visualize how the mechanics (incitives) of the EIP works.
-        </p>
-
 
         <FlowImg>
           <Image fetchPriority="high" alt="block flow" src={block_flow} />
