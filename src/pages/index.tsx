@@ -107,7 +107,7 @@ export default function Home() {
         </EthLogo>
 
         <p>
-          Ethereum&#39;s EIP-1559 is a fee pricing mechanism to help smooth out spikes in gas prices. It introduced a base fee transactions will need to pay that will get sent to a burner address when put into a block. This helps with not only gas spikes but also helps prevent sybil attacks with an additional benefit of helping reduce ETH issuance and at times even making ETH <Link href="https://ultrasound.money/">deflatioinary</Link>.
+          Ethereum&#39;s EIP-1559 is a fee pricing mechanism to help smooth out spikes in gas prices. It introduced a base fee that transactions need to pay that will get sent to a burner address when put into a block. This helps with not only gas spikes but also helps prevent sybil attacks with an additional benefit of helping reduce ETH issuance and at times even making ETH <Link href="https://ultrasound.money/">deflatioinary</Link>.
         </p>
         <p>
           But how does it help with price spikes?  Along with the base fee EIP-1559 also introduced a variable byte block size in favor of a fixed cap of 30 million gas units that can be put in a block. The price per gas unit is adjusted up or down based off the previous blocks usage. If usage was over half the gas cap (15 million) gas prices go up 125% to deter more transactions. The opposite happens in low netowrk use to incitivise more transactions. Always trying to pull usage to the target of 15 million gas units per block, as Vitalik put it...
@@ -133,7 +133,7 @@ export default function Home() {
 
         <h3>Block-by-Block</h3>
         <p>
-          The animation below shows a block-by-block visual of the total amount of fees used in a block separating out the transactin fees as a percentage of the 30 million gas cap as well as the total base fees and tips paid in the block as a percentage of the transaction fees. The data was taken from converting an Etherscan csv file for block numbers 19,874,197 to 19,874,237 from May 15th 2024.
+          The animation below shows a block-by-block visual of the total amount of fees used in a block separating out the transactin fees as a percentage of the 30 million gas cap as well as the total base fees and tips paid in the block as a percentage of the transaction fees. The data was taken from converting an Etherscan CSV file for block numbers 19,874,197 to 19,874,237 from May 15th 2024.
         </p>
 
         <div id='container'>
