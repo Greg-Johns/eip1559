@@ -99,42 +99,6 @@ export default function Home() {
       </Head>
       <main className={`${styles.main} ${inter.className}`}>
         <h2>Visualizing <Link href="https://eips.ethereum.org/EIPS/eip-1559">EIP-1559</Link></h2>
-        <h4>Ethereum&#39;s</h4>
-        <h5>Gas Fee Mechanism</h5>
-
-        <EthLogo>
-          <Image fetchPriority="low" alt="Ethereum Logo" src={eth_logo} />
-        </EthLogo>
-
-        <p>
-          Ethereum&#39;s EIP-1559 is a fee pricing mechanism to help smooth out spikes in gas prices. It introduced a base fee that transactions need to pay that will get sent to a burner address when put into a block. This helps with not only gas spikes but also helps prevent sybil attacks with an additional benefit of helping reduce ETH issuance and at times even making ETH <Link href="https://ultrasound.money/">deflatioinary</Link>.
-        </p>
-        <p>
-          But how does it help with price spikes?  Along with the base fee EIP-1559 also introduced a variable byte block size in favor of a fixed cap of 30 million gas units that can be put in a block. The price per gas unit is adjusted up or down based off the previous blocks usage. If usage was over half the gas cap (15 million) gas prices go up 125% to deter more transactions. The opposite happens in low netowrk use to incitivise more transactions. Always trying to pull usage to the target of 15 million gas units per block, as Vitalik put it...
-        </p>
-
-        <aside>
-          Instead of all of the short-term volatility in demand for transaction space within a block translating into volatility in transaction fees, some of the volatility instead translates into volatility in block size.
-          <Link href="https://notes.ethereum.org/@vbuterin/eip-1559-faq">- V. Buterin</Link>
-        </aside>
-
-        <p>
-          Viewing Etherscan charts for <Link href="https://etherscan.io/chart/gaslimit">network utilization</Link> and <Link href="https://etherscan.io/chart/networkutilization">average gas limit used</Link> we can see positive results towards those goals. Reading the information on the <Link href="https://etherscan.io/blocks">latest blocks</Link> we can surmize from the numbers how some of these key metrics change on a per block basis. But how can we get a more intuitive sense of how the mechanism works? Let&#39;s take this spreadsheet of numbers and visualize some of key variables in a way to intuitivly understand how EIP-1559.
-        </p>
-
-        <h3>Prologue: User Transactions</h3>
-        <p>
-          When a user submits a transaction on Ethereum the total fees are calculated by adding the base fee and tip together then muliplying the <i>gas units</i> needed for computation and storage. These transactions are picked up by validator nodes and put in the mempool for inclusion into a block. Here we can start to visualize how the mechanics (incitives) of the EIP works.
-        </p>
-
-        <FlowImg>
-          <Image fetchPriority="high" alt="block flow" src={block_flow} />
-        </FlowImg>
-
-        <h3>Block-by-Block</h3>
-        <p>
-          The animation below shows a block-by-block visual of the total amount of fees used in a block separating out the transactin fees as a percentage of the 30 million gas cap as well as the total base fees and tips paid in the block as a percentage of the transaction fees. The data was taken from converting an Etherscan CSV file for block numbers 19,874,197 to 19,874,237 from May 15th 2024.
-        </p>
 
         <div id='container'>
           <Block block_bg_img={block_bg_img} gas_target={gas_target}>
@@ -173,16 +137,43 @@ export default function Home() {
           <label htmlFor="12">12 sec</label>
         </div>
 
+        <h3>Block-by-Block</h3>
         <p>
-          I hope to improve on the data visual and still need to work out a formula to get the tips percentage as well as provide a live view of current block. Beyond that maybe look to include <Link href="https://vitalik.eth.limo/general/2024/05/09/multidim.html?">Multidimensional gas pricing</Link> so if you have any comments, questions or ideas for improvment please reach out.</p>
+          The animation above shows a block-by-block visual of the total amount of fees used in a block separating out the transaction fees as a percentage of the 30 million gas cap as well as the total base fees and tips paid in the block as a percentage of the transaction fees. The data was taken from converting an Etherscan CSV file for block numbers 19,874,197 to 19,874,237 from May 15th 2024.
+        </p>
+
+        <h4>Ethereum&#39;s</h4>
+        <h5>Gas Fee Mechanism</h5>
+
+        <p>
+          Ethereum&#39;s EIP-1559 is a fee pricing mechanism to help smooth out spikes in gas prices. It introduced a base fee that transactions need to pay that will get sent to a burner address when put into a block. This helps with not only gas spikes but also helps prevent sybil attacks with an additional benefit of helping reduce ETH issuance and at times even making ETH <Link href="https://ultrasound.money/">deflatioinary</Link>.
+        </p>
+        <p>
+          But how does it help with price spikes?  Along with the base fee EIP-1559 also introduced a variable byte block size in favor of a fixed cap of 30 million gas units that can be put in a block. The price per gas unit is adjusted up or down based off the previous blocks usage. If usage was over half the gas cap (15 million) gas prices go up 125% to deter more transactions. The opposite happens in low netowrk use to incitivise more transactions. Always trying to pull usage to the target of 15 million gas units per block, as Vitalik put it...
+        </p>
+
+        <aside>
+          Instead of all of the short-term volatility in demand for transaction space within a block translating into volatility in transaction fees, some of the volatility instead translates into volatility in block size.
+          <Link href="https://notes.ethereum.org/@vbuterin/eip-1559-faq">- V. Buterin</Link>
+        </aside>
+
+        <p>
+          Viewing Etherscan charts for <Link href="https://etherscan.io/chart/gaslimit">network utilization</Link> and <Link href="https://etherscan.io/chart/networkutilization">average gas limit used</Link> we can see positive results towards those goals. Reading the information on the <Link href="https://etherscan.io/blocks">latest blocks</Link> we can surmize from the numbers how some of these key metrics change on a per block basis. But how can we get a more intuitive sense of how the mechanism works? Let&#39;s take this spreadsheet of numbers and visualize some of key variables in a way to intuitivly understand how EIP-1559.
+        </p>
+
+        <h3>User Transactions</h3>
+        <p>
+          When a user submits a transaction on Ethereum the total fees are calculated by adding the base fee and tip together then muliplying the <i>gas units</i> needed for computation and storage. These transactions are picked up by validator nodes and put in the mempool for inclusion into a block. The following diagram dipicts a block in terms of gas units, tips and base fees to visualy show how EIP-1559 works as blocks are produced.
+        </p>
+
+        <FlowImg>
+          <Image fetchPriority="high" alt="block flow" src={block_flow} />
+        </FlowImg>
 
         <footer>
-          <Link href="https://github.com/Greg-Johns/eip1559">
-            Source Code
-          </Link>
-          <Link href="https://warpcast.com/gajit">
-            Contact
-          </Link>
+          <p>
+            For questions or comments you can contact me on <Link href="https://warpcast.com/gajit">Farcaster</Link> and the source code is avaliable on <Link href="https://github.com/Greg-Johns/eip1559">Github</Link>
+          </p>
           <Logo>
             <Link href="https://greg-johns.vercel.app/">
               <SvgComponent />
@@ -306,7 +297,7 @@ const GeneralEqualibrium = styled.p`
     left: 304px;
     color: #46C63B;
     font-size: 11px;
-    content: '● Target 15,000,000';
+    content: '● 15,000,000 gas units';
   }
 `;
 
